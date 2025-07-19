@@ -1,0 +1,12 @@
+{
+	"extends": [
+		"@react-native/typescript-config/tsconfig.json",
+		"../tsconfig.json"
+	],
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./src/*"],
+			"ping-react-native": ["../package/src/index"]
+		}
+	}
+}
