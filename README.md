@@ -123,7 +123,7 @@ export default function App(): React.JSX.Element {
 | **packetSize**  | `number` \| `null` \| `undefined` | No        | 56            | in bytes                                                                           |
 | **timeout**     | `number` \| `null` \| `undefined` | No        | 1000          | in milliseconds                                                                    |
 | **ttl**         | `number` \| `null` \| `undefined` | No        | 54            | [time-to-live](https://www.cloudflare.com/learning/cdn/glossary/time-to-live-ttl/) |
-| **count**       | `number` \| `null` \| `undefined` | No        | 0             | amount of try to ping. 0 is infinite count                                         |
+| **count**       | `number` \| `null` \| `undefined` | No        | 0             | amount of try to ping. 0 is infinite count. The iteration is done in the native side, not in the JavaScript side. Remember to stop the ping before your unmounting your component |
 | **interval**    | `number` \| `null` \| `undefined` | No        | 1000          | in milliseconds
 
 #### - Methods
