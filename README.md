@@ -48,7 +48,9 @@ This library marked for React Native >= 0.76 as the `peerDependencies`, but actu
     "ping-react-native": "libraryVersion"
   },
   "overrides": {
-    "react-native": ">=0.72"
+    "ping-react-native": {
+      "react-native": ">=0.72"
+    }
   }
 }
 ```
