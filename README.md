@@ -1,8 +1,8 @@
 # ping-react-native
 > :warning: It's in progress. Sooner, it will be released on npm registry
 
-Expose the Internet Control Message Protocol (**ICMP**) to React Native app.  
-Measure the round-trip time (RTT) by using ICMP echo request packets to the intended destination and iterate it in native side, not in the JavaScript side.
+Expose the Internet Control Message Protocol (**ICMP**) to React Native app natively.  
+Measure the round-trip time (RTT) by using ICMP echo request packets to the intended destination and iterate it in native side.
 
 🚀 This library is supported in New Architecture (Turbo Modules)
 
