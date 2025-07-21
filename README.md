@@ -11,8 +11,8 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
 - [APIs](#apis)
     - [ICMP](#icmp)
     - [useICMP](#useICMP)
-    - [isReachable()](#isreachable-android)
-    - [getHostName()](#gethostname-android)
+    - [isReachable()](#isreachable)
+    - [getHostName()](#gethostname)
 - [Definitions](#definitions)
     - [ICMPResult](#icmpresult)
     - [ICMPConstructorData](#icmpconstructordata)
@@ -26,7 +26,7 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
 | Android  | ✅         |                                                     |
 | iOS      | ✅         | Old architecture is not compatible yet              |
 | Windows  | ❌         |
-| macOS    | ❔         | Still in progress                                   |
+| macOS    | ❌         | Still in progress                                   |
 | Web      | ❌         | There is no ICMP in the web                         |
 
 ## Requirements
@@ -207,7 +207,9 @@ It's safe to unmount your component without invoke the `stop` method. This hook 
 | **start**     | `() => void`  |
 | **stop**      | `() => void`  |
 #
-### isReachable (Android)
+### isReachable
+> ⚠️ Not ready. It's for future release.
+
 `(host: string, timeout?: number) => Promise<boolean | null>`
 
 Simple function to test whether that address is reachable. Android implementation attempts ICMP ECHO REQUESTs first, on failure it will fall back to TCP ECHO REQUESTs. Success on either protocol will return true.
@@ -236,7 +238,9 @@ export default function App(): React.JSX.Element {
 }
 ```
 #
-### getHostName (Android)
+### getHostName
+> ⚠️ Not ready. It's for future release.
+
 `(host: string) => Promise<string | null>`
 
 If the host argument was given with a host name, this host name will be remembered and returned; otherwise, a reverse name lookup will be performed and the result will be returned based on the system configured name lookup service.
