@@ -9,12 +9,12 @@ package com.audira.lib.reactnative.pingandroid
  * but since then, it was(?) never discussed anymore
  */
 
-const val C_STATUS_ECHO					= 2
-const val C_STATUS_ECHOING				= 1
-const val C_STATUS_TIMEDOUT				= 0
-const val C_STATUS_INVALID_ARG			= -1
-const val C_STATUS_UNKNOWN_HOST			= -2
-const val C_STATUS_UNKNOWN_FAILURE		= -3
+const val PingConst_STATUS_ECHO					= 2
+const val PingConst_STATUS_ECHOING				= 1
+const val PingConst_STATUS_TIMEDOUT				= 0
+const val PingConst_STATUS_INVALID_ARG			= -1
+const val PingConst_STATUS_UNKNOWN_HOST			= -2
+const val PingConst_STATUS_UNKNOWN_FAILURE		= -3
 
-const val C_NO_ECHO_RTT					= -1e0
-const val C_NO_ECHO_TTL                 = -1
+const val PingConst_NO_ECHO_RTT					= -1e0
+const val PingConst_NO_ECHO_TTL                 = -1
