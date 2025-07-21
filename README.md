@@ -18,6 +18,7 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
     - [ICMPConstructorData](#icmpconstructordata)
     - [UseICMP](#useicmp-1)
     - [UseICMPProps](#useicmpprops)
+    - [PingStatus](#pingstatus)
 - [Android Emulator Limitations](#android-emulator-limitations)
 
 ## Platforms
