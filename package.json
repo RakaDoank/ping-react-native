@@ -2,7 +2,7 @@
 	"name": "ping-react-native",
 	"version": "0.0.1",
 	"private": true,
-	"description": "Ping controller for React Native android app",
+	"description": "Ping controller for React Native app",
 	"author": "RakaDoank <rakaaudira@gmail.com> (https://github.com/RakaDoank)",
 	"scripts": {
 		"build": "cd builder-bob && npm run build",
