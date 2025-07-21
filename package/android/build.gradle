@@ -38,12 +38,10 @@ def javaPackageName = "com.audira.lib.reactnative.pingandroid"
 android {
 	namespace "com.audira.lib.reactnative.pingandroid"
 
-	if (com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION.tokenize('.')[0].toInteger() >= 8) {
-        buildFeatures {
-            buildConfig = true
-        }
-    }
-	
+	buildFeatures {
+		buildConfig true
+	}
+
 	compileSdkVersion getExtOrDefault('compileSdkVersion')
 
 	if (rootProject.hasProperty("ndkPath")) {
@@ -57,12 +55,6 @@ android {
 		minSdkVersion getExtOrDefault('minSdkVersion')
 		targetSdkVersion getExtOrDefault('targetSdkVersion')
 		buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
-	}
-
-	buildTypes {
-		release {
-			minifyEnabled false
-		}
 	}
 
 	lintOptions {
