@@ -80,7 +80,7 @@ class RNPing (
 	}
 
 	@ReactMethod
-	override fun isReachable(
+	fun isReachable(
 		host: String,
 		timeout: Double?,
 		promise: Promise,
@@ -94,7 +94,7 @@ class RNPing (
 	}
 
 	@ReactMethod
-	override fun getHostName(
+	fun getHostName(
 		host: String,
 		promise: Promise,
 	) {
