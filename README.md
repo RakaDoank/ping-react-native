@@ -279,7 +279,7 @@ It extends [ICMPConstructorData](#icmpconstructordata).
 | `ECHO`                         | `2`            | Success
 | `ECHOING`                      | `1`            | When the `ping` method or `start` is invoked when the previous process still running
 | `TIMEDOUT`                     | `0`            |
-| `INVALID_ARG`                  | `-1`           | Invalid argument such as illegal packet size, e.g. ttl out of range.
+| `INVALID_ARG`                  | `-1`           | Invalid argument. such as illegal packet size, ttl out of range.
 | `UNKNOWN_HOST`                 | `-2`           |
 | `UNKNOWN_FAILURE`              | `-3`           |
 #
