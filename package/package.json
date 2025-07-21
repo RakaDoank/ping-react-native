@@ -1,7 +1,7 @@
 {
 	"name": "ping-react-native",
-	"version": "1.0.0-alpha.1",
-	"description": "Ping controller for React Native android app",
+	"version": "1.0.0",
+	"description": "Ping controller for React Native app",
 	"author": "RakaDoank <rakaaudira@gmail.com> (https://github.com/RakaDoank)",
 	"license": "MIT",
 	"homepage": "https://github.com/RakaDoank/ping-react-native",
@@ -10,8 +10,9 @@
 		"react-native",
 		"ping-react-native",
 		"react-native-ping",
-		"react-native-ping-ios",
-		"react-native-ping-android"
+		"ping-ios",
+		"ping-android",
+		"ping-macos"
 	],
 	"publishConfig": {
 		"access": "public",
