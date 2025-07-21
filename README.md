@@ -40,7 +40,7 @@ Even this library marked in the `package.json` with >= 0.72 version of React Nat
 #### Old Architecture
 > Currently, it's only for Android. Still in progress for iOS and macOS
 
-This library marked for React Native >= 0.76 as the `peerDependencies` in the `package.json` file, but actually you can use this library if you're in React Native >= 0.72 version. You need to override `ping-react-native` peerDependency by adding this library in `overrides` of `package.json` file
+This library marked for React Native >= 0.76 as the `peerDependencies` in the `package.json` file, but actually you can use this library if you're in React Native >= 0.72 version. You need to override `ping-react-native` peer dependency by adding this library in `overrides` of your `package.json`
 ```json
 {
   "name": "yourapp",
