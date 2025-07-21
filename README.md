@@ -25,7 +25,7 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
 | Platform | Compatible |  Remarks                                             |
 | -------- | ---------- | ---------------------------------------------------- |
 | Android  | ✅         |                                                     |
-| iOS      | ✅         | Old architecture is not compatible yet.             |
+| iOS      | ✅         | Old architecture is not compatible yet              |
 | Windows  | ❌         |
 | macOS    | ❔         | Untested. Still in progress                         |
 | Web      | ❌         | There is no ICMP in the web                         |
@@ -38,7 +38,7 @@ This library requires explicit library and React Native version due to Turbo Mod
 This library requires React Native >= 0.76 version. If you are using the latest React Native, you're good to go. Otherwise, either you need to upgrade your React Native version or you can [opt-out the new architecture](https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here#opt-out) of your app and got the [Old Architecture](#old-architecture)
 Even this library marked in the `package.json` with >= 0.72 version of React Native, for the New Architecture, it's required to use React Native >= 0.76 version.
 #### Old Architecture
-> Currently, it's only for Android. Still in progress for iOS.
+> Currently, it's only for Android. Still in progress for iOS and macOS
 
 This library marked for React Native >= 0.76 as the `peerDependencies` in the `package.json` file, but actually you can use this library if you're in React Native >= 0.72 version. You need to override `ping-react-native` peerDependency by adding this library in `overrides` of `package.json` file
 ```json
