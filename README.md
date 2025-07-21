@@ -6,6 +6,8 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
 
 🚀 This library is supported in New Architecture (Turbo Modules)
 
+- [Platforms](#platforms)
+- [Requirements](#requirements)
 - [Installation](#installation)
 - [APIs](#apis)
     - [ICMP](#icmp)
@@ -19,9 +21,18 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
     - [UseICMPProps](#useicmpprops)
 - [Android Emulator Limitations](#android-emulator-limitations)
 
+## Platforms
+| Platform | Compatible |  Remarks                                             |
+| -------- | ---------- | ---------------------------------------------------- |
+| Android  | ✅         |                                                     |
+| iOS      | ✅         | Old architecture is not compatible yet              |
+| Windows  | ✖️         |
+| macOS    | ❔         | Untested                                            |
+| Web      | ✖️         | There is no ICMP in the web                         |
+
 ## Requirements
 
-This library requires explicit library and React Native version due to Turbo Modules capabilities
+This library requires explicit library and React Native version due to Turbo Modules capabilities and backward compatibility support
 
 #### New Architecture
 This library requires React Native >= 0.76 version. If you are using the latest React Native, you're good to go. Otherwise, either you need to upgrade your React Native version or you can [opt-out the new architecture](https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here#opt-out) of your app and got the [Old Architecture](#old-architecture)
