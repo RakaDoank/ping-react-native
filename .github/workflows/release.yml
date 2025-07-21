@@ -35,7 +35,7 @@ jobs:
       run: pnpm install --frozen-lockfile
     - name: Code check
       run: npm run code-check
-    - name: Build react-native-ping-android
+    - name: Build ping-react-native
       run: |
         npm run package-prepack
         npm run build
@@ -48,4 +48,4 @@ jobs:
       env:
         NPM_CONFIG_PROVENANCE: true
       run: |
-        pnpm publish --filter react-native-android-finish --access public --no-git-checks
+        pnpm publish --filter ping-react-native --access public --no-git-checks

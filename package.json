@@ -5,10 +5,12 @@
 	"description": "Ping controller for React Native android app",
 	"author": "RakaDoank <rakaaudira@gmail.com> (https://github.com/RakaDoank)",
 	"scripts": {
-		"build": "node builder-bob/scripts/build.js",
+		"build": "cd builder-bob && npm run build",
 		"code-check": "npm run type-check && npm run lint",
-		"lint": "eslint .",
-		"type-check": "tsc --project builder-bob/tsconfig.json && tsc --project example/tsconfig.json"
+		"lint": "eslint . --fix",
+		"package-postpack": "node scripts/package-postpack.mjs",
+		"package-prepack": "node scripts/package-prepack.mjs",
+		"type-check": "tsc --project package/tsconfig.json && tsc --project example/tsconfig.json"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^1.3.1",
