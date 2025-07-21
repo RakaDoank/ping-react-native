@@ -58,6 +58,6 @@
 		}
 	},
 	"peerDependencies": {
-		"react-native": ">=0.72"
+		"react-native": ">=0.76"
 	}
 }
