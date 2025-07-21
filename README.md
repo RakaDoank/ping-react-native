@@ -1,5 +1,4 @@
 # ping-react-native
-> :warning: It's in progress. Sooner, it will be released on npm registry
 
 Expose the Internet Control Message Protocol (**ICMP**) to React Native app natively.  
 Measure the round-trip time (RTT) by using ICMP echo request packets to the intended destination and iterate it in native side.
@@ -77,7 +76,7 @@ import { Button } from 'react-native'
 import {
     ICMP,
     type ICMPResult,
-} from 'react-native-ping-android'
+} from 'ping-react-native'
 
 export default function App(): React.JSX.Element {
     const
@@ -162,7 +161,7 @@ import { Button } from 'react-native'
 
 import {
     useICMP,
-} from 'react-native-ping-android'
+} from 'ping-react-native'
 
 export default function App(): React.JSX.Element {
     const { isRunning, result, start, stop } = useICMP({
@@ -195,7 +194,7 @@ export default function App(): React.JSX.Element {
     )
 }
 ```
-You can see full example at [/example/src/screens/ping-runner/index.tsx](https://github.com/RakaDoank/react-native-ping-android/blob/main/example/src/screens/ping-runner/index.tsx)
+You can see full example at [/example/src/screens/ping-runner/index.tsx](https://github.com/RakaDoank/ping-react-native/blob/main/example/src/screens/ping-runner/index.tsx)
 
 It's safe to unmount your component without invoke the `stop` method. This hook will do the cleanup automatically.
 
@@ -220,7 +219,7 @@ import { Button } from 'react-native'
 
 import {
     isReachable,
-} from 'react-native-ping-android'
+} from 'ping-react-native'
 
 export default function App(): React.JSX.Element {
     const onPress = async () => {
