@@ -54,8 +54,6 @@ This library marked for React Native >= 0.76 as the `peerDependencies`, but actu
 ```
 Cannot guarantee for older React Native versions support. It requires some tests.
 
-About compatibility [here](#compatibility)
-
 ## Installation
 npm
 ```
