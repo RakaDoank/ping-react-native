@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  push:
+    branches:
+    - release
+  pull_request:
+    branches:
+    - release
+
+jobs:
+  release:
+    name: Release Package
+    runs-on: ubuntu-22.04
+    environment: RELEASE
+    permissions:
+      contents: read
+      id-token: write
+    strategy:
+      matrix:
+        node-version: [22]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 10
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        registry-url: https://registry.npmjs.org/
+        cache: 'pnpm'
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+    - name: Code check
+      run: npm run code-check
+    - name: Build react-native-ping-android
+      run: |
+        npm run package-prepack
+        npm run build
+    # https://github.com/pnpm/pnpm/issues/4937
+    - name: Set up special NPM voodoo
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
+    - name: Release to npm registry
+      env:
+        NPM_CONFIG_PROVENANCE: true
+      run: |
+        pnpm publish --filter react-native-android-finish --access public --no-git-checks
