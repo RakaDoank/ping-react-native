@@ -123,7 +123,7 @@ export default function App(): React.JSX.Element {
 | **packetSize**  | `number` \| `null` \| `undefined` | No        | 56            | in bytes                                                                           |
 | **timeout**     | `number` \| `null` \| `undefined` | No        | 1000          | in milliseconds                                                                    |
 | **ttl**         | `number` \| `null` \| `undefined` | No        | 54            | [time-to-live](https://www.cloudflare.com/learning/cdn/glossary/time-to-live-ttl/) |
-| **count**       | `number` \| `null` \| `undefined` | No        | 0             | amount of try to ping. 0 is infinite count. The iteration is done in the native side, not in the JavaScript side. Remember to stop the ping before your unmounting your component |
+| **count**       | `number` \| `null` \| `undefined` | No        | 0             | amount of try to ping. 0 is infinite count. **Remember to stop the ping** before unmounting your component |
 | **interval**    | `number` \| `null` \| `undefined` | No        | 1000          | in milliseconds
 
 #### - Methods
@@ -151,6 +151,9 @@ export default function App(): React.JSX.Element {
 :warning::warning::warning: **Important!**
 
 **IT'S NOT SAFE** to unmount your component without invoke the `stop` method if there are ICMP requests that still running. Your app may still has ICMP requests that still running in the background. Consider to use `useICMP` hook that do the cleanup automatically.
+
+#### Caveats
+Do not iterate the `ping` method like with `setInterval`. Just use the `count` argument because the iteration is done in native side, not in the JavaScript side.
 
 # 
 ### useICMP
