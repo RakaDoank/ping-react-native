@@ -4,8 +4,8 @@
 	"description": "Ping controller for React Native android app",
 	"author": "RakaDoank <rakaaudira@gmail.com> (https://github.com/RakaDoank)",
 	"license": "MIT",
-	"homepage": "https://github.com/RakaDoank/react-native-android-finish",
-	"repository": "https://github.com/RakaDoank/react-native-android-finish",
+	"homepage": "https://github.com/RakaDoank/ping-react-native",
+	"repository": "https://github.com/RakaDoank/ping-react-native",
 	"keywords": [
 		"react-native",
 		"ping-react-native",
