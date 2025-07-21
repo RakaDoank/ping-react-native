@@ -59,12 +59,12 @@ About compatibility [here](#compatibility)
 ## Installation
 npm
 ```
-npm install react-native-ping-android
+npm install ping-react-native
 ```
 
 or with Yarn
 ```
-yarn add react-native-ping-android
+yarn add ping-react-native
 ```
 
 ## APIs
