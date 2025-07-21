@@ -150,10 +150,9 @@ export default function App(): React.JSX.Element {
 
 :warning::warning::warning: **Important!**
 
-**IT'S NOT SAFE** to unmount your component without invoke the `stop` method if there are ICMP requests that still running. Your app may still has ICMP requests that still running in the background. Consider to use `useICMP` hook that do the cleanup automatically.
+**IT'S NOT SAFE** to unmount your component without invoke the `stop` method if there are ICMP requests that still running. Your app may still has ICMP requests that still running in the background. Consider to use [useICMP](#useicmp) hook that do the cleanup automatically.
 
-#### Caveats
-Do not iterate the `ping` method like with `setInterval`. Just use the `count` argument because the iteration is done in native side, not in the JavaScript side.
+Do not iterate the `ping` method like with `setInterval` unless you really need it. The `count` argument is the iteration that has been done in native side.
 
 # 
 ### useICMP
