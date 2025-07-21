@@ -276,7 +276,7 @@ function Item({
 			</View>
 			<View style={ Styles.itemCol }>
 				<Text style={ [Styles.itemText, textStyle, Styles.itemTextAlignRight] }>
-					{ rtt > ICMP.NO_ECHO_RTT ? rtt : mapStatusToText[status as string] }
+					{ rtt > ICMP.NO_ECHO_RTT ? rtt : mapStatusToText[status] }
 				</Text>
 			</View>
 		</View>

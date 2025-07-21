@@ -4,7 +4,7 @@ import {
 
 import {
 	PingStatus,
-} from '../../PingStatus'
+} from '../PingStatus'
 
 export interface ICMPResult {
 	rtt: Double,

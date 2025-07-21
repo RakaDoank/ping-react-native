@@ -83,12 +83,12 @@ export default [
 						'if': {
 							'after': false,
 						},
+						'catch': {
+							'after': true,
+							'before': true,
+						},
 						'for': {
 							'after': false,
-						},
-						'catch': {
-							'after': false,
-							'before': true,
 						},
 					},
 				},
@@ -136,8 +136,9 @@ export default [
 				'error',
 				{
 					'anonymous': 'never',
-					'named': 'never',
 					'asyncArrow': 'always', // valid: async () => {} | error: async() => {}
+					'catch': 'never',
+					'named': 'never',
 				},
 			],
 			'@stylistic/space-infix-ops': [

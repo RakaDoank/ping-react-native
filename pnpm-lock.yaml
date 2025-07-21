@@ -21,7 +21,7 @@ importers:
         specifier: 0.80.1
         version: 0.80.1
       '@stylistic/eslint-plugin':
-        specifier: ^5.1.0
+        specifier: ^5.2.0
         version: 5.2.0(eslint@9.31.0)
       '@types/node':
         specifier: ^24.0.1
@@ -136,7 +136,7 @@ importers:
   package:
     dependencies:
       react-native:
-        specifier: '>=0.72'
+        specifier: '>=0.76'
         version: 0.80.1(@babel/core@7.28.0)(@react-native-community/cli@19.1.0(typescript@5.8.3))(@types/react@19.1.8)(react@19.1.0)
 
 packages:
