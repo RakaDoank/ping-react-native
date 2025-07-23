@@ -8,12 +8,12 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 Make sure [`pnpm`](https://pnpm.io/installation) is installed in your machine.
 
-First you need to clone the [react-native-andorid-finish](https://github.com/RakaDoank/react-native-android-finish) repository
+First you need to clone the [ping-react-native](https://github.com/RakaDoank/ping-react-native) repository
 ```sh
-git clone https://github.com/RakaDoank/react-native-android-finish.git
+git clone https://github.com/RakaDoank/ping-react-native.git
 ```
 
-After that, run `pnpm install` in the `react-native-android-finish` directory
+After that, run `pnpm install` in the `ping-react-native` directory
 
 ## Step 2: Start Metro
 
@@ -31,7 +31,7 @@ yarn start
 
 ## Step 3: Build and run your app
 
-With Metro running, open a new terminal window/pane from the root of the `example` directory, and use one of the following commands to build and run your Android ~~or iOS app~~:
+With Metro running, open a new terminal window/pane from the root of the `example` directory, and use one of the following commands to build and run your Android or iOS app:
 
 ### Android
 
@@ -43,23 +43,23 @@ npm run android
 yarn android
 ```
 
-### ~~iOS~~
+### iOS
 
-~~For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).~~
+For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
 
-~~The first time you create a new project, run the Ruby bundler to install CocoaPods itself:~~
+The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
 
 ```sh
 bundle install
 ```
 
-~~Then, and every time you update your native dependencies, run:~~
+Then, and every time you update your native dependencies, run:
 
 ```sh
 bundle exec pod install
 ```
 
-~~For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).~~
+For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
 
 ```sh
 # Using npm
@@ -68,7 +68,7 @@ npm run ios
 # OR using Yarn
 yarn ios
 ```
-If everything is set up correctly, you should see your new app running in the Android Emulator, ~~iOS Simulator~~, or your connected device.
+If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
 
 This is one way to run your app — you can also build it directly from Android Studio or Xcode.
 
@@ -81,7 +81,7 @@ Open `App.tsx` in your text editor of choice and make some changes. When you sav
 When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
 
 - **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- ~~**iOS**: Press <kbd>R</kbd> in iOS Simulator.~~
+- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
 
 ## Congratulations! :tada:
 
