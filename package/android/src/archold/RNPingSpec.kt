@@ -29,16 +29,16 @@ abstract class RNPingSpec internal constructor(context: ReactApplicationContext)
 		eventId: String,
 	)
 
-	abstract fun isReachable(
-		host: String,
-		timeout: Double?,
-		promise: Promise,
-	)
-
-	abstract fun getHostName(
-		host: String,
-		promise: Promise,
-	)
+//	abstract fun isReachable(
+//		host: String,
+//		timeout: Double?,
+//		promise: Promise,
+//	)
+//
+//	abstract fun getHostName(
+//		host: String,
+//		promise: Promise,
+//	)
 
 	protected fun emitPingListener(
 		result: ReadableMap,
