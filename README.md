@@ -289,6 +289,6 @@ It extends [ICMPConstructorData](#icmpconstructordata).
 #
 
 ## Android Emulator Limitations
-Depending on the environment, the emulator might not be able to support other protocols (such as ICMP, used for "ping"). See [Local networking limitations](https://developer.android.com/studio/run/emulator-networking#networkinglimitations).
+Depending on the environment, the emulator might not be able to support ICMP. See [Local networking limitations](https://developer.android.com/studio/run/emulator-networking#networkinglimitations).
 
 Instead, you can use Android physical device and run React Native app in it.
