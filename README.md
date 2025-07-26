@@ -234,12 +234,12 @@ If the host argument was given with a host name, this host name will be remember
 | `interval`    | `number` \| `null` \| `undefined`   | Value in milliseconds.
 
 #### UseICMP
-| Properties    | Type                                          | Remarks                                                                                                        |
-| ------------- | -----------------------------------  | -------------------------------------------------------------------------------------------------------------- |
-| `isRunning`   | `boolean`                            | A React state                                                                                                  |
-| `result`      | `ICMPResult` \| `undefined`          | See [ICMPResult](#icmpresult)
-| `start`       | `() => void`                         | See [UseICMPStartParams](#useicmpstartparams)
-| `stop`        | `() => void`                         | Stop the current running process. It does nothing when there is no processes.
+| Properties    | Type                                | Remarks                                                                                                        |
+| ------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `isRunning`   | `boolean`                           | A React state                                                                                                  |
+| `result`      | `ICMPResult` \| `undefined`         | See [ICMPResult](#icmpresult)
+| `start`       | `() => void`                        |
+| `stop`        | `() => void`                        | Stop the current running process. It does nothing when there is no processes.
 
 #### UseICMPProps
 It extends [ICMPConstructorData](#icmpconstructordata).
@@ -253,7 +253,6 @@ It extends [ICMPConstructorData](#icmpconstructordata).
 | `INVALID_ARG`                  | `-1`           | Invalid argument. such as illegal packet size, ttl out of range.
 | `UNKNOWN_HOST`                 | `-2`           |
 | `UNKNOWN_FAILURE`              | `-3`           |
-#
 
 ## Android Emulator Limitations
 Depending on the environment, the emulator might not be able to support ICMP. See [Local networking limitations](https://developer.android.com/studio/run/emulator-networking#networkinglimitations).
