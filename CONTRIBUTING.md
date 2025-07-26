@@ -54,7 +54,7 @@ Go to the repository's directory in your terminal or cmd and do the installation
 pnpm install
 ```
 
-This installation will install all the npm registries including the `react-native` example app.
+This installation will install all the npm dependencies including the `react-native` example app.
 
 ### 2. Library Installation with Example App
 In this project, the example app at the `ping-react-native/example` directory is the app we will use as the library playground to use for the library development. The app was bootstrapped with [@react-native-community/cli](https://github.com/react-native-community/cli) with [some modificiations](#about-the-example-app-and-the-library-in-monorepo-setup).
