@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
   s.authors      = package["author"]
 
   s.platforms    = { :ios => min_ios_version_supported }
-  s.source       = { :git => "https://github.com/RakaDoank/ping-react-native-ios.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/RakaDoank/ping-react-native.git", :tag => "#{s.version}" }
 
   s.source_files = "apple/**/*.{h,m,mm,cpp}"
   s.ios.exclude_files = "**/*.macos.{h,m,mm}"
