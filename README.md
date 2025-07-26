@@ -24,11 +24,11 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
 ## Platforms
 | Platform | Compatible |  Remarks                                             |
 | -------- | ---------- | ---------------------------------------------------- |
-| Android  | ✅         |                                                     |
-| iOS      | ✅         | Old architecture is not compatible yet              |
+| Android  | ✅         |                                                      |
+| iOS      | ✅         |                                                      |
 | Windows  | ❌         |
-| macOS    | ❌         | Still in progress                                   |
-| Web      | ❌         | There is no ICMP in the web                         |
+| macOS    | ❌         | Still in progress                                    |
+| Web      | ❌         | There is no ICMP in the web                          |
 
 ## Requirements
 
@@ -37,7 +37,6 @@ This library requires explicit library and React Native version due to Turbo Mod
 #### New Architecture
 This library requires React Native >= 0.76 version. If you are using the latest React Native, you're good to go. Otherwise, either you need to upgrade your React Native version or you can [opt-out the new architecture](https://reactnative.dev/blog/2024/10/23/the-new-architecture-is-here#opt-out) of your app and see the [Old Architecture](#old-architecture).
 #### Old Architecture
-> Currently, it's only for Android. Still in progress for iOS.
 
 This library marked for React Native >= 0.76 as the `peerDependencies`, but actually you can use this library if you're in React Native >= 0.72 version. You need to override this library's peer dependency by adding `overrides` property of your `package.json`
 ```json
