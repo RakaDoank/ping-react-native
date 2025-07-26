@@ -1,15 +1,22 @@
 # Contributing
 Thank you for your support to this library. This documentation will help you how to contribute to this library. There are some requirements and conventions that we and i must fill and follow.
 
-## Envionments
-Before you clone this repository, you need to add these in your machine
-- [Node.js](https://nodejs.org) >=20
-- [PNPM](https://pnpm.io) >= 10
-- [Visual Studio Code](https://code.visualstudio.com) (Optional)
-  - [ESLint Extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-- [Android Studio](https://developer.android.com/studio) with Meerkat version or latest version for Android development
-- [Xcode](https://developer.apple.com/xcode) latest version for iOS and macOS development
-- [Ruby](https://www.ruby-lang.org) >= 3.3.6 for iOS and macOS development. You can use [ruby-install](https://github.com/postmodern/ruby-install) to install other Ruby versions with [chruby](https://github.com/postmodern/chruby) to easily switch Ruby version
+- [Knowledges](#knowledges)
+- [Environments](#environments)
+- [Clone](#clone)
+- [Setup](#setup)
+  - [1. NPM Dependencies Installation](#1-npm-dependencies-installation)
+  - [2. Library Installation with Example App](#2-library-installation-with-example-app)
+    - [Android](#android)
+    - [iOS](#ios)
+    - [macOS](#macos)
+- [Run the Example App](#run-the-example-app)
+  - [Android](#android-1)
+  - [iOS](#ios-1)
+- [Conventions](#conventions)
+  - [JavaScript/TypeScript](#javascripttypescript)
+  - [Java/Kotlin](#javakotlin)
+  - [Objective-C/Swift](#objective-c)
 
 ## Knowledges
 To contribute to this project, we assummed that you know about app development with React Native including:
@@ -21,6 +28,16 @@ To contribute to this project, we assummed that you know about app development w
 - A bit of [react-native-builder-bob](https://callstack.github.io/react-native-builder-bob) knowledges as the builder for React Native libraries for various targets
 
 You don't have to know it all at advanced level. **Feel free to learn and embrace it**. Do the actual fix and any improvements. I encourage you.
+
+## Environments
+Before you clone this repository, you need to add these in your machine
+- [Node.js](https://nodejs.org) >=20
+- [PNPM](https://pnpm.io) >= 10
+- [Visual Studio Code](https://code.visualstudio.com) (Optional)
+  - [ESLint Extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Android Studio](https://developer.android.com/studio) with Meerkat version or latest version for Android development
+- [Xcode](https://developer.apple.com/xcode) latest version for iOS and macOS development
+- [Ruby](https://www.ruby-lang.org) >= 3.3.6 for iOS and macOS development. You can use [ruby-install](https://github.com/postmodern/ruby-install) to install other Ruby versions with [chruby](https://github.com/postmodern/chruby) to easily switch Ruby version
 
 ## Clone
 Clone this repository in your machine
@@ -84,8 +101,8 @@ You can check the lint rules at [ping-react-native/eslint.config.mjs](https://gi
 ### Java/Kotlin
 The convention for the project for Java/Kotlin code is only indentatation with Tab
 
-### Objective-C/Swift
-Please, follow the [Google Objective-C Style Guide](https://google.github.io/styleguide/objcguide.html). It's a good one.
+### Objective-C
+Please, follow the [Google Objective-C Style Guide](https://google.github.io/styleguide/objcguide.html).
 
 ## Directories
 - `.github`: You don't have to worry about this directory
