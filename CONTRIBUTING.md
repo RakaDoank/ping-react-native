@@ -1,5 +1,5 @@
 # Contributing
-Thank you for you support to this library. This documentation will help you how to contribute to this library. There are some requirements and conventions that we and i must fill and follow.
+Thank you for your support to this library. This documentation will help you how to contribute to this library. There are some requirements and conventions that we and i must fill and follow.
 
 ## Envionments
 Before you clone this repository, you need to add these in your machine
@@ -60,14 +60,14 @@ Beforehand, make sure you are with Ruby >= 3.3.6 version
 #### macOS
 ⚠️ The example app is not compatible with the macOS React Native app yet. Soon this documentation will be updated
 
-### 3. Run the Example App
+## Run the Example App
 
-#### Android
-For Android, you need to run with physical Android devices. Please, connect your Android with USB (or you can connect it ADB Wireless Mode). run `adb devices` in your terminal or cmd, and make sure your devices are listed.
+### Android
+For Android, you need to run with physical Android devices. See [Emulator Networking](https://developer.android.com/studio/run/emulator-networking#networkinglimitations). Please, connect your Android with USB (or you can connect it ADB Wireless Mode). run `adb devices` in your terminal or cmd, and make sure your devices are listed.
 
 After that, you can run the app. Go the `example` directory, run `npm run android`. Alternatively, you can run the metro first by execute `npm run start`, and then run `npm run android` later.
 
-#### iOS
+### iOS
 For iOS, you need run your iPhone/iPad Simulator first.
 
 After it's completely booted up, you can run the app. Go the `example` directory, run `npm run ios`. Alternatively, you can run the metro first by execute `npm run start`, and then run `npm run ios` later.
