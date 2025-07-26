@@ -1,4 +1,3 @@
-#import "SimplePing.h"
 #import "GBPing.h"
 
 typedef void(^OnPing)(double rtt, double ttl, int status, BOOL isEnded);

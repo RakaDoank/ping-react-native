@@ -1,6 +1,5 @@
 #import "ICMP.h"
 #import "PingConst.h"
-#import "SimplePing.h"
 #import "GBPing.h"
 
 @implementation ICMP {
