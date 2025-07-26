@@ -16,7 +16,7 @@ Thank you for your support to this library. This documentation will help you how
 - [Conventions](#conventions)
   - [JavaScript/TypeScript](#javascripttypescript)
   - [Java/Kotlin](#javakotlin)
-  - [Objective-C/Swift](#objective-c)
+  - [Objective-C](#objective-c)
 
 ## Knowledges
 To contribute to this project, we assummed that you know about app development with React Native including:
