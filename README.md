@@ -26,7 +26,7 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
 | Android  | ✅         |                                                      |
 | iOS      | ✅         |                                                      |
 | Windows  | ❌         |
-| macOS    | ❌         | Still in progress                                    |
+| macOS    | ✅         |                                                      |
 | Web      | ❌         | There is no ICMP in the web                          |
 
 ## Requirements
