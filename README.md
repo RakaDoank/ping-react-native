@@ -221,7 +221,7 @@ If the host argument was given with a host name, this host name will be remember
 | `rtt`         | `number`                          | When the `status` is not `PingStatus.ECHO`, the value will be -1 (`NO_ECHO_RTT`)
 | `ttl`         | `number`                          | When the `status` is not `PingStatus.ECHO`, the value will be -1 (`NO_ECHO_TTL`)
 | `status`      | `PingStatus`                      | Full references at [PingStatus](#pingstatus)
-| `isEnded`     | `boolean`                         | `true` if there is a subsequent ping request coming.
+| `isEnded`     | `boolean`                         | `true` if there is no subsequent ping requests.
 
 #### ICMPConstructorData
 | Properties    | Type                                | Remarks                                                                                                        |
@@ -236,9 +236,9 @@ If the host argument was given with a host name, this host name will be remember
 #### UseICMP
 | Properties    | Type                                | Remarks                                                                                                        |
 | ------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `isRunning`   | `boolean`                           | A React state                                                                                                  |
+| `isRunning`   | `boolean`                           | A React state. `false` if there is no subsequent ping requests                                                 |
 | `result`      | `ICMPResult` \| `undefined`         | See [ICMPResult](#icmpresult)
-| `start`       | `() => void`                        |
+| `start`       | `() => void`                        | Start the ping process
 | `stop`        | `() => void`                        | Stop the current running process. It does nothing when there is no processes.
 
 #### UseICMPProps
