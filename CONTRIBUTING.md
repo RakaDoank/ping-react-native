@@ -17,6 +17,7 @@ Thank you for your support to this library. This documentation will help you how
   - [JavaScript/TypeScript](#javascripttypescript)
   - [Java/Kotlin](#javakotlin)
   - [Objective-C](#objective-c)
+- [About the Example App and the Library in Monorepo Setup](#about-the-example-app-and-the-library-in-monorepo-setup)
 
 ## Knowledges
 To contribute to this project, we assummed that you know about app development with React Native including:
