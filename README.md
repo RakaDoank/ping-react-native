@@ -11,7 +11,6 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
 - [APIs](#apis)
     - [ICMP](#icmp)
     - [useICMP](#useICMP)
-    - [isReachable()](#isreachable)
     - [getHostName()](#gethostname)
 - [Definitions](#definitions)
     - [ICMPResult](#icmpresult)
@@ -206,38 +205,7 @@ It's safe to unmount your component without invoke the `stop` method. This hook 
 | **result**    | `ICMPResult`  | See [ICMPResult](#icmpresult)
 | **start**     | `() => void`  |
 | **stop**      | `() => void`  |
-#
-### isReachable
-> ⚠️ Not ready. It's for future release.
 
-`(host: string, timeout?: number) => Promise<boolean | null>`
-
-Simple function to test whether that address is reachable. Android implementation attempts ICMP ECHO REQUESTs first, on failure it will fall back to TCP ECHO REQUESTs. Success on either protocol will return true.
-
-The host argument can either be a machine name, such as "guthib.com", or a textual representation of its IP address.  
-The timeout is 10000 (10 seconds) by default.
-```tsx
-import { Button } from 'react-native'
-
-import {
-    isReachable,
-} from 'ping-react-native'
-
-export default function App(): React.JSX.Element {
-    const onPress = async () => {
-        const isReached = await isReachable('guthib.com')
-        console.log('Is reached: ', isReached)
-    }
-
-    return (
-        <Button
-            title="Test"
-            onPress={ onPress }
-        />
-    )
-}
-```
-#
 ### getHostName
 > ⚠️ Not ready. It's for future release.
 
