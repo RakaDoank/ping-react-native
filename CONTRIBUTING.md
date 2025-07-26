@@ -83,7 +83,7 @@ bundle install && bundle exec pod install
 ## Run the Example App
 
 ### Android
-For Android, you need to run with physical Android devices. See [Emulator Networking](https://developer.android.com/studio/run/emulator-networking#networkinglimitations). Please, connect your Android with USB (or you can connect it ADB Wireless Mode). run `adb devices` in your terminal or cmd, and make sure your devices are listed.
+For Android, you need to run with physical Android devices. See [Emulator Networking](https://developer.android.com/studio/run/emulator-networking#networkinglimitations). Connect your Android with USB or you can [connect it over Wi-Fi](https://developer.android.com/tools/adb#connect-to-a-device-over-wi-fi). Run `adb devices` in your terminal or cmd, and make sure your devices are listed.
 
 After that, you can run the app. Go the `example` directory, run `npm run android`. Alternatively, you can run the metro first by execute `npm run start`, and then run `npm run android` later.
 
