@@ -20,7 +20,7 @@ Thank you for your support to this library. This documentation will help you how
 
 ## Knowledges
 To contribute to this project, we assummed that you know about app development with React Native including:
-- **JavaScript** or **TypeScript** language as the library user bridge to consume native modules of platform
+- **JavaScript** or **TypeScript** language as the bridge for library users to consume native modules of platform and for the build user interface with [React.js](https://react.dev) in the React Native app
 - **Java** or **Kotlin** for Android library development
 - **Objective-C** for iOS and macOS library development. Optionally, you can use **Swift** language. The library currently does not contain any Swift code due to the Swift bridging header performance, but it's not prohibited to use
 - [Turbo Native Modules](https://reactnative.dev/docs/turbo-native-modules-introduction) for React Native module development with new architecture. You can also refer to the [reactwg](https://github.com/reactwg/react-native-new-architecture) documentation for additional information about React Native New Architecture
