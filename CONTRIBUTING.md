@@ -69,8 +69,10 @@ To setup the React Native app and link the library (`ping-react-native`) itself 
 Beforehand, make sure you are with Ruby >= 3.3.6 version
 1. Open your terminal
 2. Go to the `ping-react-native/example/ios` directory
-3. Install the pods
-> bundle install && bundle exec pod install
+3. Install the pods by run this command
+```
+bundle install && bundle exec pod install
+```
 4. Open the `ping-react-native/example/ios/example.xcworkspace` directory with **Xcode**
 5. You should see `RNPing` folder in the `Pods > Development Tools` from the sidebar navigator. This is where the library code lives you can actually do any fixes
 
