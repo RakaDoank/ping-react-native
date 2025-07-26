@@ -7,7 +7,7 @@ import type {
 } from './NativeRNPing'
 
 const LINKING_ERROR =
-	"The package 'react-native-android-finish' doesn't seem to be linked. Make sure: \n\n" +
+	"The package 'ping-react-native' doesn't seem to be linked. Make sure: \n\n" +
 	'- You rebuilt the app after installing the package\n' +
 	'- You are not using Expo Go\n'
 
@@ -15,7 +15,7 @@ const module = isTurboModuleCompat()
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 	? require('./NativeRNPing').default
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-	: require('react-native').NativeModules.RNPingIOS
+	: require('react-native').NativeModules.RNPing
 
 const NativeModule = module
 	? module

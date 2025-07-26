@@ -4,7 +4,6 @@
 
 @implementation ICMP {
     NSInteger count;
-    NSUInteger interval;
     GBPing *pinger;
 }
 
@@ -18,7 +17,6 @@
     self = [super init];
     if(self) {
         self->count = count;
-        self->interval = interval;
 
         self->pinger = [[GBPing alloc] init];
         self->pinger.host = host;

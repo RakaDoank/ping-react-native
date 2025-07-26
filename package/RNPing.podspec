@@ -13,8 +13,11 @@ Pod::Spec.new do |s|
   s.platforms    = { :ios => min_ios_version_supported }
   s.source       = { :git => "https://github.com/RakaDoank/ping-react-native-ios.git", :tag => "#{s.version}" }
 
-  s.source_files = "ios/**/*.{h,m,mm,cpp}"
-  s.private_header_files = "ios/**/*.h"
+  s.source_files = "apple/**/*.{h,m,mm,cpp}"
+  s.ios.exclude_files = "**/*.macos.{h,m,mm}"
+  s.tvos.exclude_files = "**/*.macos.{h,m,mm}"
+  s.osx.exclude_files = "**/*.ios.{h,m,mm}"
+  s.private_header_files = "apple/**/*.h"
 
  install_modules_dependencies(s)
 end

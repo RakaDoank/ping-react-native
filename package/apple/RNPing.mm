@@ -3,18 +3,18 @@
 #import "ICMP/ICMP.h"
 
 @implementation RNPing {
-    NSMutableDictionary *dictICMP;
+    NSMutableDictionary<NSString *, ICMP *> *dictICMP;
 }
 
 RCT_EXPORT_MODULE()
 
-- (void)icmp:(NSString *)eventId
-        host:(NSString *)host
-       count:(NSInteger)count
-  packetSize:(NSInteger)packetSize
-     timeout:(NSInteger)timeout
-         ttl:(NSInteger)ttl
-    interval:(NSInteger)interval
+RCT_EXPORT_METHOD(icmp:(NSString *)eventId
+                  host:(NSString *)host
+                 count:(NSInteger)count
+            packetSize:(NSInteger)packetSize
+               timeout:(NSInteger)timeout
+                   ttl:(NSInteger)ttl
+              interval:(NSInteger)interval)
 {
     if(count < 0 || timeout <= 0 || interval <= 0 || packetSize < 0 || ttl < 0) {
         [self emitPingListener:@{
@@ -49,7 +49,7 @@ RCT_EXPORT_MODULE()
         };
 
         [dictICMP setObject:icmp forKey:eventId];
-        [icmp ping];
+        [[dictICMP objectForKey:eventId] ping];
     } else {
         [self emitPingListener:@{
             @"rtt"      : [NSNumber numberWithInt:PingConst_NO_ECHO_RTT],
@@ -60,7 +60,7 @@ RCT_EXPORT_MODULE()
     }
 }
 
-- (void)icmpRemove:(NSString *)eventId {
+RCT_EXPORT_METHOD(icmpRemove:(NSString *)eventId) {
     ICMP *icmp = [dictICMP objectForKey:eventId];
     if(icmp) {
         [icmp stop];
@@ -68,10 +68,33 @@ RCT_EXPORT_MODULE()
     }
 }
 
+#ifdef RCT_NEW_ARCH_ENABLED
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
     (const facebook::react::ObjCTurboModule::InitParams &)params
 {
     return std::make_shared<facebook::react::NativeRNPingSpecJSI>(params);
 }
+
+#else
+
+- (NSArray<NSString *> *)supportedEvents {
+    return @[@"PingListener"];
+}
+
+- (void)startObserving {
+    self->pingListening = YES;
+}
+
+- (void)stopObserving {
+    self->pingListening = NO;
+}
+
+- (void)emitPingListener:(NSDictionary *)dictionary {
+    if(self->pingListening) {
+        [self sendEventWithName:[[self supportedEvents] objectAtIndex:0] body:dictionary];
+    }
+}
+
+#endif
 
 @end

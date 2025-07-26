@@ -12,9 +12,7 @@ typedef void(^OnPing)(double rtt, double ttl, int status, BOOL isEnded);
            ttl:(NSUInteger)ttl
        timeout:(NSUInteger)timeout
       interval:(NSUInteger)interval;
-//          onPing:(void (^)(double rtt))onPing;
 
-//- (void)ping:(void (^)(double rtt))onPing;
 - (void)ping;
 
 - (void)stop;
