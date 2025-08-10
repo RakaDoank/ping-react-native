@@ -1,6 +1,6 @@
 {
 	"name": "ping-react-native",
-	"version": "1.2.2",
+	"version": "1.2.3",
 	"description": "Ping controller for React Native app",
 	"author": "RakaDoank <rakaaudira@gmail.com> (https://github.com/RakaDoank)",
 	"license": "MIT",
@@ -31,7 +31,8 @@
 				"types": "./lib/typescript/commonjs/index.d.ts",
 				"default": "./lib/commonjs/index.js"
 			}
-		}
+		},
+		"./package.json": "./package.json"
 	},
 	"files": [
 		"lib",
