@@ -1,6 +1,6 @@
 ---
 name: "\U0001F41B BUG"
-about: Describe this issue template's purpose here.
+about: So sorry. Can you tell us about the bug? Does it fly?
 title: "\U0001F41B Your Issue"
 labels: bug
 assignees: RakaDoank
