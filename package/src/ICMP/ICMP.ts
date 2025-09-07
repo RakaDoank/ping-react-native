@@ -4,7 +4,9 @@ import {
 	type EventSubscription,
 } from 'react-native'
 
-import NativeModule from '../native-module'
+import {
+	NativeModule,
+} from '../native-module'
 
 import {
 	isTurboModuleCompat,

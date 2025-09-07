@@ -17,7 +17,7 @@ const module = isTurboModuleCompat()
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 	: require('react-native').NativeModules.RNPing
 
-const NativeModule = module
+const _NativeModule = module
 	? module
 	: new Proxy(
 		{},
@@ -28,4 +28,4 @@ const NativeModule = module
 		},
 	)
 
-export default NativeModule as Spec
+export const NativeModule = _NativeModule as Spec
