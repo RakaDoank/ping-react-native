@@ -32,7 +32,7 @@ You don't have to know it all at advanced level. **Feel free to learn and embrac
 
 ## Environments
 Before you clone this repository, you need to add these in your machine
-- [Node.js](https://nodejs.org) >=20
+- [Node.js](https://nodejs.org) >=22
 - [PNPM](https://pnpm.io) >= 10
 - [Visual Studio Code](https://code.visualstudio.com) (Optional)
   - [ESLint Extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
