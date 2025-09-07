@@ -1,17 +1,23 @@
 package com.audira.lib.reactnative.pingandroid
 
 import com.audira.lib.reactnative.pingandroid.icmp.ICMP
-
 import com.facebook.react.bridge.LifecycleEventListener
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactMethod
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 
 import java.net.InetAddress
 
 class RNPing (
 	reactContext: ReactApplicationContext,
 ) : RNPingSpec(reactContext) {
+
+	private var coroutine_getHostname: CoroutineScope? = null
+	private var coroutine_getHostAddress: CoroutineScope? = null
 
 	private val mapICMP
 		: MutableMap<String/* Event ID */, ICMP>
@@ -30,12 +36,25 @@ class RNPing (
 				}
 			}
 
+			private fun removeCoroutines() {
+				if(coroutine_getHostname != null) {
+					coroutine_getHostname!!.cancel()
+					coroutine_getHostname = null
+				}
+				if(coroutine_getHostAddress != null) {
+					coroutine_getHostAddress!!.cancel()
+					coroutine_getHostAddress = null
+				}
+			}
+
 			override fun onHostDestroy() {
 				icmpCancel()
+				removeCoroutines()
 			}
 
 			override fun onHostPause() {
 				icmpCancel()
+				removeCoroutines()
 			}
 
 			override fun onHostResume() {
@@ -80,29 +99,52 @@ class RNPing (
 	}
 
 	@ReactMethod
-	fun isReachable(
-		host: String,
-		timeout: Double?,
-		promise: Promise,
+	override fun getHostname(
+		host: String?,
+		promise: Promise?,
 	) {
+		if(host.isNullOrEmpty()) {
+			promise?.resolve(null)
+			return
+		}
+
 		try {
-			val bool = InetAddress.getByName(host).isReachable(timeout?.toInt() ?: 10000)
-			promise.resolve(bool)
-		} finally {
-			promise.resolve(null)
+			if(coroutine_getHostname == null) {
+				coroutine_getHostname = CoroutineScope(Dispatchers.IO)
+			}
+			coroutine_getHostname?.launch {
+				promise?.resolve(
+					InetAddress.getByName(host).canonicalHostName
+				)
+				cancel()
+			}
+		} catch(e: Throwable) {
+			promise?.resolve(null)
 		}
 	}
 
 	@ReactMethod
-	fun getHostName(
-		host: String,
-		promise: Promise,
+	override fun getHostAddress(
+		host: String?,
+		promise: Promise?,
 	) {
+		if(host.isNullOrEmpty()) {
+			promise?.resolve(null)
+			return
+		}
+
 		try {
-			val hostName = InetAddress.getByName(host).hostName
-			promise.resolve(hostName)
-		} finally {
-			promise.resolve(null)
+			if(coroutine_getHostAddress == null) {
+				coroutine_getHostAddress = CoroutineScope(Dispatchers.IO)
+			}
+			coroutine_getHostAddress?.launch {
+				promise?.resolve(
+					InetAddress.getByName(host).hostAddress
+				)
+				cancel()
+			}
+		} catch(e: Throwable) {
+			promise?.resolve(null)
 		}
 	}
 

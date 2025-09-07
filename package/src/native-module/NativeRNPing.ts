@@ -21,6 +21,12 @@ export interface Spec extends TurboModule {
 	) => void,
 	icmpRemove: (eventId: string) => void,
 	readonly pingListener: EventEmitter<UnsafeObject>,
+	getHostname: (
+		host: string | null,
+	) => Promise<string | null>,
+	getHostAddress: (
+		host: string | null,
+	) => Promise<string | null>,
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('RNPing')
