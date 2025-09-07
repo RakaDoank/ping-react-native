@@ -206,14 +206,25 @@ It's safe to unmount your component without invoke the `stop` method. This hook 
 | **start**     | `() => void`  |
 | **stop**      | `() => void`  |
 
-### getHostName
-> ⚠️ Not ready. It's for future release.
-
+# 
+### getHostname
 `(host: string) => Promise<string | null>`
 
-If the host argument was given with a host name, this host name will be remembered and returned; otherwise, a reverse name lookup will be performed and the result will be returned based on the system configured name lookup service.
-#
+Gets the host name from an IP address.
 
+If the host argument was given with a host name, a reverse name lookup still will be performed and the result will be returned based on the system configured name lookup service.
+
+The Promise will never be rejected. It will return `null` if it fails.
+
+# 
+### getHostAddress
+`(host: string) => Promise<string | null>`
+
+Gets the host address from a host name. Returns the IP address string in textual presentation.
+
+The Promise will never be rejected. It will return `null` if it fails.
+
+# 
 ## Definitions
 #### ICMPResult
 | Properties    | Type                              | Remarks                                                                            |
