@@ -84,7 +84,7 @@ export default [
 							'after': false,
 						},
 						'catch': {
-							'after': true,
+							'after': false,
 							'before': true,
 						},
 						'for': {
