@@ -1,9 +1,10 @@
+engineStrict: true
+
+nodeLinker: hoisted
+
 packages:
   - builder-bob
   - example
   - package
-engineStrict: true
-nodeLinker: hoisted
-onlyBuiltDependencies:
-  - unrs-resolver
+
 strictPeerDependencies: false
