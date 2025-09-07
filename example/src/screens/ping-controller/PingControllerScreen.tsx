@@ -3,6 +3,7 @@ import {
 } from 'react'
 
 import {
+	Alert,
 	useColorScheme,
 } from 'react-native'
 
@@ -18,6 +19,11 @@ import {
 } from 'react-native'
 
 import {
+	getHostAddress,
+	getHostname,
+} from 'ping-react-native'
+
+import {
 	NavigationHooks,
 } from '@/hooks'
 
@@ -31,39 +37,64 @@ export function PingControllerScreen(): React.JSX.Element {
 			useRef({
 				host: '',
 				ttl: '54',
-			})
+			}),
 
-	const onChangeHost: TextInputProps['onChange'] = event => {
-		ref.current.host = event.nativeEvent.text
-	}
-
-	const onChangeTTL: TextInputProps['onChange'] = event => {
-		ref.current.ttl = event.nativeEvent.text
-	}
-
-	const navigateToPingRunner = () => {
-		navigation.navigate(
-			'ping_runner',
-			{
-				host: ref.current.host,
-				ttl: Number(ref.current.ttl),
-				// count: Number.POSITIVE_INFINITY,
-				count: 16,
+		onChangeHost: TextInputProps['onChange'] =
+			event => {
+				ref.current.host = event.nativeEvent.text
 			},
-		)
 
-		// navigation.navigate(
-		// 	'nest_sample',
-		// 	{
-		// 		screen: 'step_2',
-		// 		params: {
-		// 			foo: true,
-		// 			bar: 0,
-		// 			someMessage: 'i love you',
-		// 		},
-		// 	},
-		// )
-	}
+		onChangeTTL: TextInputProps['onChange'] =
+			event => {
+				ref.current.ttl = event.nativeEvent.text
+			},
+
+		getHostnameHandler =
+			() => {
+				getHostname(ref.current.host).then(res => {
+					Alert.alert('Hostname: ', res ?? 'null', [
+						{
+							text: 'Okay',
+						},
+					])
+				})
+			},
+
+		getHostAddressHandler =
+			() => {
+				getHostAddress(ref.current.host).then(res => {
+					Alert.alert('Host Address: ', res ?? 'null', [
+						{
+							text: 'Okay',
+						},
+					])
+				})
+			},
+
+		navigateToPingRunner =
+			() => {
+				navigation.navigate(
+					'ping_runner',
+					{
+						host: ref.current.host,
+						ttl: Number(ref.current.ttl),
+						// count: Number.POSITIVE_INFINITY,
+						count: 16,
+					},
+				)
+
+				// navigation.navigate(
+				// 	'nest_sample',
+				// 	{
+				// 		screen: 'step_2',
+				// 		params: {
+				// 			foo: true,
+				// 			bar: 0,
+				// 			someMessage: 'i love you',
+				// 		},
+				// 	},
+				// )
+			}
 
 	return (
 		<ScrollView
@@ -80,7 +111,7 @@ export function PingControllerScreen(): React.JSX.Element {
 			/>
 
 			<TextInputPart
-				title="TTL"
+				title="TTL (for ping only)"
 				textInputProps={{
 					defaultValue: ref.current.ttl,
 					keyboardType: 'number-pad',
@@ -89,10 +120,20 @@ export function PingControllerScreen(): React.JSX.Element {
 				style={ Styles.mb4 }
 			/>
 
-			<Button
-				title="Ping"
-				onPress={ navigateToPingRunner }
-			/>
+			<View>
+				<Button
+					title="Ping"
+					onPress={ navigateToPingRunner }
+				/>
+				<Button
+					title="Get Hostname"
+					onPress={ getHostnameHandler }
+				/>
+				<Button
+					title="Get Host Address"
+					onPress={ getHostAddressHandler }
+				/>
+			</View>
 		</ScrollView>
 	)
 
