@@ -179,6 +179,7 @@ export default [
 		// React Native files
 
 		files: [
+			'./example/src/**/*.{js,jsx,ts,tsx}',
 			'./package/src/**/*.{js,jsx,ts,tsx}',
 		],
 		ignores: [
