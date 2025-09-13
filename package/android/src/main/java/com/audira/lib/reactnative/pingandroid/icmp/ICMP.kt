@@ -1,5 +1,6 @@
 package com.audira.lib.reactnative.pingandroid.icmp
 
+import com.facebook.react.bridge.ReadableMap
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.awaitClose
@@ -12,11 +13,8 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.withTimeout
-
 import java.io.BufferedReader
 import java.io.InputStreamReader
-
-import com.facebook.react.bridge.ReadableMap
 
 private const val STR_END = "END"
 private const val STR_ERR = "ERR"

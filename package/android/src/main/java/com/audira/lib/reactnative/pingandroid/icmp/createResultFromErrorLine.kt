@@ -8,7 +8,7 @@ fun createResultFromErrorLine(
     isEnded: Boolean,
 ): ICMPResult {
     if(regexUnknownHost.find(line) != null) {
-        return createResultUnknownHost(isEnded)
+        return createResultUnknownHost()
     }
 
     if(regexInvalidArg.find(line) != null) {
