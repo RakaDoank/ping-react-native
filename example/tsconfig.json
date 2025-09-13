@@ -8,5 +8,8 @@
 			"@/*": ["./src/*"],
 			"ping-react-native": ["../package/src/index"]
 		}
-	}
+	},
+	"include": [
+		"./src/**/*"
+	]
 }
