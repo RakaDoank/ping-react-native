@@ -1,5 +1,6 @@
 import {
 	type Double,
+// eslint-disable-next-line import-x/no-unresolved
 } from 'react-native/Libraries/Types/CodegenTypes'
 
 import {

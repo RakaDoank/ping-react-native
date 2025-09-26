@@ -3,11 +3,14 @@
  */
 
 // import React from 'react';
-import ReactTestRenderer from 'react-test-renderer';
-import App from '../App';
+import * as ReactTestRenderer from 'react-test-renderer';
+
+import {
+	ExampleApp,
+} from '../src/ExampleApp';
 
 test('renders correctly', async () => {
 	await ReactTestRenderer.act(() => {
-		ReactTestRenderer.create(<App />);
+		ReactTestRenderer.create(<ExampleApp />);
 	});
 });

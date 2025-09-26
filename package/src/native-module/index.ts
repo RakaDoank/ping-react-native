@@ -1,10 +1,10 @@
-import {
-	isTurboModuleCompat,
-} from './is-turbo-module-compat'
-
 import type {
 	Spec,
 } from './NativeRNPing'
+
+import {
+	isTurboModuleCompat,
+} from './is-turbo-module-compat'
 
 const LINKING_ERROR =
 	"The package 'ping-react-native' doesn't seem to be linked. Make sure: \n\n" +

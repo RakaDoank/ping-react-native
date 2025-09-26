@@ -1,16 +1,23 @@
+import * as EslintCompat from '@eslint/compat'
 import EslintJs from '@eslint/js'
-import {
-	fixupPluginRules,
-} from '@eslint/compat'
-import StylisticJs from '@stylistic/eslint-plugin'
-import TsEslint from 'typescript-eslint'
 
 import ReactNativeEslintConfig from '@react-native/eslint-config'
-import ReactNativeEslintPlugin from 'eslint-plugin-react-native'
+
+import StylisticJs from '@stylistic/eslint-plugin'
+
+import * as EslintImportResolverTypeScript from 'eslint-import-resolver-typescript'
+
+import * as EslintPluginImportX from 'eslint-plugin-import-x'
+
 import ReactEslintPlugin from 'eslint-plugin-react'
-import ReactHooksEslintPlugin from 'eslint-plugin-react-hooks'
+
+import * as ReactHooksEslintPlugin from 'eslint-plugin-react-hooks'
+
+import ReactNativeEslintPlugin from 'eslint-plugin-react-native'
 
 import Globals from 'globals'
+
+import * as TypeScriptEslint from 'typescript-eslint'
 
 export default [
 
@@ -23,16 +30,85 @@ export default [
 
 	EslintJs.configs.recommended,
 
+	EslintPluginImportX.importX.flatConfigs.recommended,
+	EslintPluginImportX.importX.flatConfigs.typescript,
+
 	{
-		plugins: {
-			'@stylistic': StylisticJs,
-		},
 		rules: {
 			'consistent-return': 'error',
 			'eol-last': 'error',
 			'semi': 'off',
 			'yoda': 'error',
 
+			'import-x/first': 'error',
+			'import-x/newline-after-import': [
+				'error',
+				{
+					'count': 1,
+					'considerComments': true,
+				},
+			],
+			'import-x/no-cycle': 'error',
+			'import-x/order': [
+				'error',
+				{
+					'alphabetize': {
+						'order': 'asc',
+					},
+					/**
+					 * I want to distinct module import, not only the group
+					 * Ommitting this prop is not force me to put new empty line each import tho
+					 */
+					// 'consolidateIslands': 'inside-groups',
+					'distinctGroup': false,
+					'newlines-between': 'always-and-inside-groups',
+					'named': {
+						'enabled': true,
+						'cjsExports': true,
+						'export': true,
+						'import': true,
+						'require': true,
+						'types': 'types-last',
+					},
+					'groups': [
+						'builtin',
+						'external',
+						'internal',
+						'parent',
+						'sibling',
+						'index',
+					],
+					'pathGroups': [
+						{
+							'pattern': 'react',
+							'group': 'builtin',
+							'position': 'after',
+						},
+						{
+							'pattern': 'react-native',
+							'group': 'builtin',
+							'position': 'after',
+						},
+						{
+							'pattern': '@storybook/**',
+							'group': 'builtin',
+							'position': 'after',
+						},
+					],
+					'pathGroupsExcludedImportTypes': [
+						'builtin',
+					],
+					'warnOnUnassignedImports': true,
+				},
+			],
+		},
+	},
+
+	{
+		plugins: {
+			'@stylistic': StylisticJs,
+		},
+		rules: {
 			'@stylistic/block-spacing': 'error',
 			'@stylistic/brace-style': [
 				'error',
@@ -83,12 +159,12 @@ export default [
 						'if': {
 							'after': false,
 						},
+						'for': {
+							'after': false,
+						},
 						'catch': {
 							'after': false,
 							'before': true,
-						},
-						'for': {
-							'after': false,
 						},
 					},
 				},
@@ -119,6 +195,24 @@ export default [
 					'ignoreComments': true,
 				},
 			],
+			'@stylistic/object-curly-newline': [
+				'error',
+				{
+					'ObjectExpression': {
+						'multiline': true,
+						'consistent': true,
+					},
+					'ObjectPattern': {
+						'multiline': true,
+						'consistent': true,
+					},
+					'ExportDeclaration': 'always',
+					'ImportDeclaration': 'always',
+					'TSTypeLiteral': 'always',
+					'TSInterfaceBody': 'always',
+					'TSEnumBody': 'always',
+				},
+			],
 			'@stylistic/object-curly-spacing': [
 				'warn',
 				'always',
@@ -137,8 +231,8 @@ export default [
 				{
 					'anonymous': 'never',
 					'asyncArrow': 'always', // valid: async () => {} | error: async() => {}
-					'catch': 'never',
 					'named': 'never',
+					"catch": "never",
 				},
 			],
 			'@stylistic/space-infix-ops': [
@@ -154,11 +248,10 @@ export default [
 		},
 	},
 
-	...TsEslint.configs.recommendedTypeChecked.map(conf => ({
+	...TypeScriptEslint.configs.recommendedTypeChecked.map(conf => ({
 		...conf,
 		files: ['**/*.ts', '**/*.tsx', '**/*.mts'],
 	})),
-
 	{
 		files: [
 			'**/*.ts',
@@ -172,6 +265,15 @@ export default [
 			'@typescript-eslint/no-require-imports': 'off',
 			'@typescript-eslint/no-unsafe-argument': 'off',
 			'@typescript-eslint/no-unsafe-assignment': 'off',
+		},
+		languageOptions: {
+			parserOptions: {
+				project: [
+					'./example/tsconfig.json',
+					'./package/tsconfig.json',
+				],
+				tsconfigRootDir: import.meta.dirname,
+			},
 		},
 	},
 
@@ -192,8 +294,8 @@ export default [
 		},
 		plugins: {
 			...ReactEslintPlugin.configs.flat['jsx-runtime'].plugins,
-			'react-hooks': fixupPluginRules(ReactHooksEslintPlugin),
-			'react-native': fixupPluginRules(ReactNativeEslintPlugin),
+			'react-hooks': EslintCompat.fixupPluginRules(ReactHooksEslintPlugin),
+			'react-native': EslintCompat.fixupPluginRules(ReactNativeEslintPlugin),
 		},
 		languageOptions: {
 			...ReactEslintPlugin.configs.flat['jsx-runtime'].languageOptions,
@@ -231,15 +333,30 @@ export default [
 	},
 
 	{
-		languageOptions: {
-			ecmaVersion: 2020,
-			parserOptions: {
-				project: [
-					'./example/tsconfig.json',
-					'./package/tsconfig.json',
-				],
-				tsconfigRootDir: import.meta.dirname,
-			},
+		files: [
+			'./example/**/*.{ts,tsx}',
+		],
+		settings: {
+			'import-x/resolver-next': [
+				EslintImportResolverTypeScript.createTypeScriptImportResolver({
+					alwaysTryTypes: true,
+					project: './example/tsconfig.json',
+				}),
+			],
+		},
+	},
+
+	{
+		files: [
+			'./package/**/*.{ts,tsx}',
+		],
+		settings: {
+			'import-x/resolver-next': [
+				EslintImportResolverTypeScript.createTypeScriptImportResolver({
+					alwaysTryTypes: true,
+					project: './package/tsconfig.json',
+				}),
+			],
 		},
 	},
 

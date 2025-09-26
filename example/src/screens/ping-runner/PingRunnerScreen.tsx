@@ -9,21 +9,21 @@ import {
 	Pressable,
 	StyleSheet,
 	Text,
-	useColorScheme,
 	View,
 	VirtualizedList,
+	useColorScheme,
 	type VirtualizedListProps,
 } from 'react-native'
-
-import {
-	useSafeAreaInsets,
-} from 'react-native-safe-area-context'
 
 import {
 	ICMP,
 	PingStatus,
 	useICMP,
 } from 'ping-react-native'
+
+import {
+	useSafeAreaInsets,
+} from 'react-native-safe-area-context'
 
 import {
 	type NavigationType,

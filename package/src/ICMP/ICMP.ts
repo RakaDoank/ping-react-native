@@ -1,8 +1,12 @@
 import {
 	NativeEventEmitter,
-	type NativeModule as LegacyNativeModule,
 	type EventSubscription,
+	type NativeModule as LegacyNativeModule,
 } from 'react-native'
+
+import {
+	PingStatus,
+} from '../PingStatus'
 
 import {
 	NativeModule,
@@ -11,10 +15,6 @@ import {
 import {
 	isTurboModuleCompat,
 } from '../native-module/is-turbo-module-compat'
-
-import {
-	PingStatus,
-} from '../PingStatus'
 
 import type {
 	ICMPConstructorData,
