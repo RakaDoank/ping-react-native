@@ -55,7 +55,7 @@
     double rtt      = -99.0;
     double ttl      = -99.0;
     BOOL isEnded    = NO;
-    int status      = -99.0;
+    int status      = PingConst_STATUS_UNKNOWN_FAILURE;
 
     if(summary != NULL && *summary != nil) {
         rtt = [*summary rtt] * MSEC_PER_SEC;
@@ -77,8 +77,6 @@
         }
         if([*error code] == kCFHostErrorUnknown || [*error code] == kCFHostErrorHostNotFound) {
             status = PingConst_STATUS_UNKNOWN_HOST;
-        } else {
-            status = PingConst_STATUS_UNKNOWN_FAILURE;
         }
         isEnded = YES;
     }
@@ -97,7 +95,12 @@
 }
 
 - (void)ping:(GBPing *)pinger didTimeoutWithSummary:(GBPingSummary *)summary {
-    [self pingHandler:&summary error:NULL];
+    self.onPing(
+                PingConst_NO_ECHO_RTT,
+                PingConst_NO_ECHO_TTL,
+                PingConst_STATUS_TIMEDOUT,
+                [summary sequenceNumber] == self->count - 1 ? YES : NO
+                );
 }
 
 - (void)ping:(GBPing *)pinger didSendPingWithSummary:(GBPingSummary *)summary {
