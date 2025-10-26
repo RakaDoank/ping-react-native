@@ -39,11 +39,6 @@ jobs:
       run: |
         npm run package-prepack
         npm run build
-    # https://github.com/pnpm/pnpm/issues/4937
-    - name: Set up special NPM voodoo
-      run: |
-        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
-        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" >> .npmrc
     - name: Release to npm registry
       env:
         NPM_CONFIG_PROVENANCE: true
