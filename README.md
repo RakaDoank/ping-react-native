@@ -18,7 +18,7 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
     - [ICMPConstructorData](#icmpconstructordata)
     - [UseICMP](#useicmp-1)
     - [UseICMPProps](#useicmpprops)
-    - [PingStatus](#pingstatus)
+    - [ICMPStatus](#icmpstatus)
 - [Android Emulator Limitations](#android-emulator-limitations)
 
 ## Platforms
@@ -96,6 +96,7 @@ export default function App(): React.JSX.Element {
     }, [])
 
     const onPress = async () => {
+        icmp.current?.stop() // Stop previous runner if any
         icmp.current?.ping(res => {
             setResult({
                 rtt: result.rtt,
@@ -118,7 +119,7 @@ export default function App(): React.JSX.Element {
 #### - Constructors: (data: [ICMPConstructorData](#icmpconstructordata))
 | Data Properties | Type                              | Required  | Default Value | Remarks                                                                            |
 | --------------- | --------------------------------- | --------- | ------------- | ---------------------------------------------------------------------------------- |
-| **host**        | `string`                          | Yes       |               | valid host, e.g. 1.1.1.1 or guthib.com. Invalid host or unknown service will return ping result with `PingStatus.UNKNOWN_HOST` status                                                                                                                                                                              |
+| **host**        | `string`                          | Yes       |               | valid host, e.g. 1.1.1.1 or guthib.com. Invalid host or unknown service will return ping result with `ICMPStatus.UNKNOWN_HOST` status                                                                                                                                                                              |
 | **packetSize**  | `number` \| `null` \| `undefined` | No        | 56            | in bytes                                                                           |
 | **timeout**     | `number` \| `null` \| `undefined` | No        | 1000          | in milliseconds                                                                    |
 | **ttl**         | `number` \| `null` \| `undefined` | No        | 54            | [time-to-live](https://www.cloudflare.com/learning/cdn/glossary/time-to-live-ttl/) |
@@ -128,7 +129,7 @@ export default function App(): React.JSX.Element {
 #### - Methods
 | Method       | Return | Remarks                                                                                                               |
 | ------------ | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| **ping**     | `void` | Run the ICMP ping with arguments that has been defined from constructor. This method is an event listener that will invoke your callback function. If the method is invoked again while the previous process is still running, it will invoke your callback with `PingStatus.ECHOING` status.                                                                          |
+| **ping**     | `void` | Run the ICMP ping with arguments that has been defined from constructor. This method is an event listener that will invoke your callback function. If the method is invoked again while the previous process is still running, it will invoke your callback with `ICMPStatus.ECHOING` status.                                                                          |
 | **stop**     | `void` | Stop current ICMP ping request. It's important to invoke this function to cleanup ICMP request to avoid memory leaks. It's safe to invoke this method even if there is no ping requests are running. |
 
 #### - Properties
@@ -144,8 +145,9 @@ export default function App(): React.JSX.Element {
 #### - Static Members
 | Static Member       | Type              | Value             | Remarks                                                                                                     |
 | ------------------- | ----------------- | ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| **NO_ECHO_RTT**     | `number`          | -1                | Just an constant whenever the status of ping result is not `PingStatus.ECHO`. It is used in the rtt result. |
-| **NO_ECHO_TTL**     | `number`          | -1                | Just an constant whenever the status of ping result is not `PingStatus.ECHO`. It is used in the ttl result. |
+| **NO_ECHO_RTT**     | `number`          | -1                | Just an constant whenever the status of ping result is not `ICMPStatus.ECHO`. It is used in the rtt result. |
+| **NO_ECHO_TTL**     | `number`          | -1                | Just an constant whenever the status of ping result is not `ICMPStatus.ECHO`. It is used in the ttl result. |
+| **Status**          | `ICMPStatus`      | `ICMPStatus`      | - |
 
 :warning::warning::warning: **Important!**
 
@@ -157,19 +159,18 @@ Do not iterate the `ping` method like with `setInterval` unless you really need 
 ### useICMP
 A React hook of encapsulated `ICMP` class that you may use it to simplify the cleanup handling
 ```tsx
-import { Button } from 'react-native'
-
 import {
     useICMP,
 } from 'ping-react-native'
 
 export default function App(): React.JSX.Element {
-    const { isRunning, result, start, stop } = useICMP({
+    const { isRunning, result } = useICMP({
         host: 'guthib.com',
         packetSize: 64,
         timeout: 1000,
         interval: 1000,
         count: 10,
+        // enabled: false // It's enabled by default. You can control when the ICMP should run
     })
 
     useEffect(() => {
@@ -177,21 +178,6 @@ export default function App(): React.JSX.Element {
             console.log('Result: ', result.rtt, result.ttl, result.status)
         }
     }, [result])
-
-    const toggle = () => {
-        if(isRunning) {
-            stop()
-        } else {
-            start()
-        }
-    }
-
-    return (
-        <Button
-            title={ isRunning ? 'Stop' : 'Start' }
-            onPress={ toggle }
-        />
-    )
 }
 ```
 You can see full example at [/example/src/screens/ping-runner/index.tsx](https://github.com/RakaDoank/ping-react-native/blob/main/example/src/screens/ping-runner/index.tsx)
@@ -204,8 +190,6 @@ It's safe to unmount your component without invoke the `stop` method. This hook 
 | ------------- | ------------- | ---------------------------------------------------------------------------------- |
 | **isRunning** | `boolean`     |
 | **result**    | `ICMPResult`  | See [ICMPResult](#icmpresult)
-| **start**     | `() => void`  |
-| **stop**      | `() => void`  |
 
 # 
 ### getHostname
@@ -230,16 +214,16 @@ The Promise will never be rejected. It will return `null` if it fails.
 #### ICMPResult
 | Properties    | Type                              | Remarks                                                                            |
 | ------------- | --------------------------------- | ---------------------------------------------------------------------------------- |
-| `rtt`         | `number`                          | When the `status` is not `PingStatus.ECHO`, the value will be -1 (`NO_ECHO_RTT`)
-| `ttl`         | `number`                          | When the `status` is not `PingStatus.ECHO`, the value will be -1 (`NO_ECHO_TTL`)
-| `status`      | `PingStatus`                      | Full references at [PingStatus](#pingstatus)
+| `rtt`         | `number`                          | When the `status` is not `ICMPStatus.ECHO`, the value will be -1 (`NO_ECHO_RTT`)
+| `ttl`         | `number`                          | When the `status` is not `ICMPStatus.ECHO`, the value will be -1 (`NO_ECHO_TTL`)
+| `status`      | `ICMPStatus`                      | Full references at [ICMPStatus](#icmpstatus)
 | `isEnded`     | `boolean`                         | `true` if there is no subsequent ping requests.
 
 #### ICMPConstructorData
 | Properties    | Type                                | Remarks                                                                                                        |
 | ------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `host`        | `string`                            | Can either be a machine name, such as "guthib.com", or a textual representation of its IP address.             |
-| `packetSize`  | `number` \| `null` \| `undefined`   | Value in bytes. If it smaller than zero, the promise result will be returned with `PingStatus.INVALID_ARG` status.
+| `packetSize`  | `number` \| `null` \| `undefined`   | Value in bytes. If it smaller than zero, the promise result will be returned with `ICMPStatus.INVALID_ARG` status.
 | `ttl`         | `number` \| `null` \| `undefined`   | [time-to-live](https://www.cloudflare.com/learning/cdn/glossary/time-to-live-ttl/)
 | `timeout`     | `number` \| `null` \| `undefined`   | Value in milliseconds.
 | `count`       | `number` \| `null` \| `undefined`   | Amount of try to ping. 0 is infinite count
@@ -250,13 +234,11 @@ The Promise will never be rejected. It will return `null` if it fails.
 | ------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `isRunning`   | `boolean`                           | A React state. `false` if there is no subsequent ping requests                                                 |
 | `result`      | `ICMPResult` \| `undefined`         | See [ICMPResult](#icmpresult)
-| `start`       | `() => void`                        | Start the ping process
-| `stop`        | `() => void`                        | Stop the current running process. It does nothing when there is no processes.
 
 #### UseICMPProps
 It extends [ICMPConstructorData](#icmpconstructordata).
 
-#### PingStatus
+#### ICMPStatus
 | Member                         | Value          | Remarks                                                                              |
 | ------------------------------ | -------------- | ------------------------------------------------------------------------------------ |
 | `ECHO`                         | `2`            | Success
