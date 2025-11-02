@@ -5,10 +5,6 @@ import {
 } from 'react-native'
 
 import {
-	PingStatus,
-} from '../PingStatus'
-
-import {
 	NativeModule,
 } from '../native-module'
 
@@ -24,6 +20,10 @@ import type {
 	ICMPResult,
 } from './ICMPResult'
 
+import {
+	ICMPStatus,
+} from './ICMPStatus'
+
 const isTurboModuleEnabled = isTurboModuleCompat()
 
 export class ICMP {
@@ -38,6 +38,8 @@ export class ICMP {
 
 	static NO_ECHO_RTT = -1
 	static NO_ECHO_TTL = -1
+
+	static Status = ICMPStatus
 
 	private pingEventSubscription: EventSubscription | null = null
 	private pingEventHandler: ((result: ICMPResult) => void) | null = null
@@ -103,7 +105,7 @@ export class ICMP {
 			onPing({
 				rtt: ICMP.NO_ECHO_RTT,
 				ttl: ICMP.NO_ECHO_TTL,
-				status: PingStatus.ECHOING,
+				status: ICMPStatus.ECHOING,
 				isEnded: true,
 			})
 		}
@@ -117,7 +119,7 @@ export class ICMP {
 		}
 	}
 
-	isRunning() {
+	get isRunning() {
 		return !!this.pingEventHandler
 	}
 

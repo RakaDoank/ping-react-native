@@ -1,7 +1,4 @@
-/**
- * @deprecated Use `ICMPStatus` instead.
- */
-export enum PingStatus {
+export enum ICMPStatus {
 	ECHO					= 2,
 	ECHOING					= 1,
 	TIMEDOUT				= 0,

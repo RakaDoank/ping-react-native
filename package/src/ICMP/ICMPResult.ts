@@ -7,9 +7,13 @@ import {
 	PingStatus,
 } from '../PingStatus'
 
+import {
+	ICMPStatus,
+} from './ICMPStatus'
+
 export interface ICMPResult {
 	rtt: Double,
 	ttl: number,
-	status: PingStatus,
+	status: ICMPStatus | PingStatus,
 	isEnded: boolean,
 }
