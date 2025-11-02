@@ -19,6 +19,7 @@ Measure the round-trip time (RTT) by using ICMP echo request packets to the inte
     - [UseICMP](#useicmp-1)
     - [UseICMPProps](#useicmpprops)
     - [ICMPStatus](#icmpstatus)
+- [Migrating V1 to V2](#migrating-v1-to-v2)
 - [Android Emulator Limitations](#android-emulator-limitations)
 
 ## Platforms
@@ -247,6 +248,9 @@ It extends [ICMPConstructorData](#icmpconstructordata).
 | `INVALID_ARG`                  | `-1`           | Invalid argument. such as illegal packet size, ttl out of range.
 | `UNKNOWN_HOST`                 | `-2`           |
 | `UNKNOWN_FAILURE`              | `-3`           |
+
+## Migrating V1 to V2
+There is breaking change 2.x version. See [migration guide](https://github.com/RakaDoank/ping-react-native/blob/main/docs/MIGRATING_V1_TO_V2.md).
 
 ## Android Emulator Limitations
 Depending on the environment, the emulator might not be able to support ICMP. See [Local networking limitations](https://developer.android.com/studio/run/emulator-networking#networkinglimitations).
