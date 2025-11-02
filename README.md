@@ -148,7 +148,7 @@ export default function App(): React.JSX.Element {
 | ------------------- | ----------------- | ----------------- | ----------------------------------------------------------------------------------------------------------- |
 | **NO_ECHO_RTT**     | `number`          | -1                | Just an constant whenever the status of ping result is not `ICMPStatus.ECHO`. It is used in the rtt result. |
 | **NO_ECHO_TTL**     | `number`          | -1                | Just an constant whenever the status of ping result is not `ICMPStatus.ECHO`. It is used in the ttl result. |
-| **Status**          | `ICMPStatus`      | `ICMPStatus`      | - |
+| **Status**          | `enum`            | `ICMPStatus`      | See [ICMPStatus](#icmpstatus). |
 
 :warning::warning::warning: **Important!**
 
@@ -190,7 +190,7 @@ It's safe to unmount your component without invoke the `stop` method. This hook 
 | Properties    | Type          | Remarks                                                                            |
 | ------------- | ------------- | ---------------------------------------------------------------------------------- |
 | **isRunning** | `boolean`     |
-| **result**    | `ICMPResult`  | See [ICMPResult](#icmpresult)
+| **result**    | `object`  | See [ICMPResult](#icmpresult)
 
 # 
 ### getHostname
@@ -217,7 +217,7 @@ The Promise will never be rejected. It will return `null` if it fails.
 | ------------- | --------------------------------- | ---------------------------------------------------------------------------------- |
 | `rtt`         | `number`                          | When the `status` is not `ICMPStatus.ECHO`, the value will be -1 (`NO_ECHO_RTT`)
 | `ttl`         | `number`                          | When the `status` is not `ICMPStatus.ECHO`, the value will be -1 (`NO_ECHO_TTL`)
-| `status`      | `ICMPStatus`                      | Full references at [ICMPStatus](#icmpstatus)
+| `status`      | `enum`                            | See [ICMPStatus](#icmpstatus).
 | `isEnded`     | `boolean`                         | `true` if there is no subsequent ping requests.
 
 #### ICMPConstructorData
@@ -234,7 +234,7 @@ The Promise will never be rejected. It will return `null` if it fails.
 | Properties    | Type                                | Remarks                                                                                                        |
 | ------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `isRunning`   | `boolean`                           | A React state. `false` if there is no subsequent ping requests                                                 |
-| `result`      | `ICMPResult` \| `undefined`         | See [ICMPResult](#icmpresult)
+| `result`      | `object` \| `undefined`             | See [ICMPResult](#icmpresult)
 
 #### UseICMPProps
 It extends [ICMPConstructorData](#icmpconstructordata).
@@ -243,7 +243,7 @@ It extends [ICMPConstructorData](#icmpconstructordata).
 | Member                         | Value          | Remarks                                                                              |
 | ------------------------------ | -------------- | ------------------------------------------------------------------------------------ |
 | `ECHO`                         | `2`            | Success
-| `ECHOING`                      | `1`            | When the `ping` method or `start` is invoked when the previous process still running
+| `ECHOING`                      | `1`            | When the `ping` method is invoked when the previous process still running
 | `TIMEDOUT`                     | `0`            |
 | `INVALID_ARG`                  | `-1`           | Invalid argument. such as illegal packet size, ttl out of range.
 | `UNKNOWN_HOST`                 | `-2`           |
