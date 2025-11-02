@@ -113,7 +113,7 @@ export function PingControllerScreen(): React.JSX.Element {
 			<TextInputPart
 				title="TTL (for ping only)"
 				textInputProps={{
-					defaultValue: ref.current.ttl,
+					defaultValue: '54',
 					keyboardType: 'number-pad',
 					onChange: onChangeTTL,
 				}}

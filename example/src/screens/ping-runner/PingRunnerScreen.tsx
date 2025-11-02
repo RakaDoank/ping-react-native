@@ -56,55 +56,34 @@ export function PingRunnerScreen({
 				virtualizedList: null,
 			}),
 
+		/**
+		 * This is just for an example of how to turn on/off the ICMP.
+		 * You may not need this because the `enabled` from the `useICMP` props is true by default.
+		 */
+		[enabled, setEnabled] =
+			useState(true),
+
 		[data, setData] =
 			useState<DataState[]>([]),
 
-		{ isRunning, result, start, stop } =
+		{ isRunning, result } =
 			useICMP({
 				host: route.params.host,
 				count: route.params.count,
 				packetSize: route.params.packetSize,
 				timeout: route.params.timeout,
 				ttl: route.params.ttl,
+				enabled,
 			}),
 
 		setVirtualizedListRef: React.RefCallback<VirtualizedList<ItemRendererData>> =
 			useCallback(_ref => {
 				ref.current.virtualizedList = _ref
-			}, []),
-
-		startHandler =
-			useCallback(() => {
-				console.log('startHandler: ', route.params)
-				start()
-			}, [
-				start,
-				route.params,
-			])
+			}, [])
 
 	useEffect(() => {
-		/**
-		 * Cannot depends on the falsy of `isRunning` since it will be re-invoked the `startHandler` again when isRunning == false
-		 */
-		// if(!isRunning) {}
-
-		if(!ref.current.initialRun) {
-			console.log('initialRun')
-			ref.current.initialRun = true
-			startHandler()
-		}
-	}, [
-		startHandler,
-	])
-
-	useEffect(() => {
-		ref.current.isRunning = isRunning
-	}, [
-		isRunning,
-	])
-
-	useEffect(() => {
-		if(result) {
+		if(result && !result.isEnded) {
+			// eslint-disable-next-line react-hooks/set-state-in-effect
 			setData(_data => _data.concat({ ...result }))
 		}
 	}, [
@@ -118,16 +97,8 @@ export function PingRunnerScreen({
 	}, [])
 
 	const toggleHandler = useCallback(() => {
-		if(isRunning) {
-			stop()
-		} else {
-			startHandler()
-		}
-	}, [
-		isRunning,
-		stop,
-		startHandler,
-	])
+		setEnabled(curr => !curr)
+	}, [])
 
 	const itemGetter: NonNullable<NonNullable<VirtualizedListProps<ItemRendererData>>['getItem']>
 		= useCallback((_data, index) => {
