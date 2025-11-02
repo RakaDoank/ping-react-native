@@ -1,5 +1,4 @@
 import {
-	useCallback,
 	useEffect,
 	useRef,
 	useState,
@@ -20,8 +19,6 @@ import type {
 export interface UseICMP {
 	isRunning: boolean,
 	result: ICMPResult | undefined,
-	start: () => void,
-	stop: () => void,
 }
 
 export function useICMP({
@@ -31,46 +28,18 @@ export function useICMP({
 	timeout,
 	ttl,
 	interval,
+	enabled = true,
 }: UseICMPProps) {
 
 	const
 		icmp =
 			useRef<ICMP>(null),
 
-		[state, setState] =
-			useState<{
-				result: UseICMP['result'],
-				isRunning: boolean
-			}>({
-				result: undefined,
-				isRunning: false,
-			}),
-
-		start: UseICMP['start'] =
-			useCallback(() => {
-				if(!state.isRunning) {
-					setState(_state => ({
-						result: _state.result,
-						isRunning: true,
-					}))
-				}
-			}, [
-				state.isRunning,
-			]),
-
-		stop: UseICMP['stop'] =
-			useCallback(() => {
-				icmp.current?.stop()
-				setState(_state => ({
-					result: _state.result,
-					isRunning: false,
-				}))
-			}, [])
+		[result, setResult] =
+			useState<UseICMP['result']>(undefined)
 
 	useEffect(() => {
-		if(icmp.current) {
-			icmp.current?.stop()
-		}
+		icmp.current?.stop()
 
 		icmp.current = new ICMP({
 			host,
@@ -80,6 +49,12 @@ export function useICMP({
 			ttl,
 			interval,
 		})
+
+		const icmpRef = icmp.current
+
+		return () => {
+			icmpRef?.stop()
+		}
 	}, [
 		host,
 		count,
@@ -90,29 +65,35 @@ export function useICMP({
 	])
 
 	useEffect(() => {
-		const icmpRef = icmp.current
-
-		if(state.isRunning) {
-			icmp.current?.ping(result => {
-				setState({
-					result,
-					isRunning: !result.isEnded,
-				})
+		if(enabled && icmp.current) {
+			icmp.current.ping(result => {
+				setResult(result)
+			})
+		} else if(icmp.current?.isRunning) {
+			icmp.current.stop()
+			// This effect block will not be ran immediately when `enabled` prop is false
+			// eslint-disable-next-line react-hooks/set-state-in-effect
+			setResult(curr => {
+				if(curr) {
+					return {
+						...curr,
+						isEnded: true,
+					}
+				}
+				return undefined
 			})
 		}
-
-		return () => {
-			icmpRef?.stop()
-		}
 	}, [
-		state.isRunning,
+		enabled,
 	])
 
 	return {
-		isRunning: state.isRunning,
-		result: state.result,
-		start,
-		stop,
+		isRunning: enabled
+			? result
+				? !result.isEnded
+				: true // Provide `isRunning` with true value immediately without waiting the first result
+			: false,
+		result,
 	}
 
 }
