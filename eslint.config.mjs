@@ -11,7 +11,7 @@ import * as EslintPluginImportX from 'eslint-plugin-import-x'
 
 import ReactEslintPlugin from 'eslint-plugin-react'
 
-import * as ReactHooksEslintPlugin from 'eslint-plugin-react-hooks'
+import ReactHooksEslintPlugin from 'eslint-plugin-react-hooks'
 
 import ReactNativeEslintPlugin from 'eslint-plugin-react-native'
 
@@ -25,6 +25,10 @@ export default [
 		ignores: [
 			'**/node_modules/',
 			'package/lib',
+			'**/android/',
+			'**/ios/',
+			'**/apple/',
+			'**/.bundle/',
 		],
 	},
 
