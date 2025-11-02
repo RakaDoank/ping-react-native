@@ -15,7 +15,7 @@ import {
 export default function App(): React.JSX.Element {
   const
     // You can control when the ICMP should run declaratively
-    // You may not need if it's always true because the `enabled` from the `useICMP` props is true by default
+    // You may not need this if it's always true because the `enabled` from the `useICMP` props is true by default
     [enabled, setEnabled] =
       useState(true),
 
