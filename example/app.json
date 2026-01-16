@@ -1,4 +1,67 @@
 {
-	"name": "example",
-	"displayName": "example"
+	"expo": {
+		"name": "Ping React Native",
+		"slug": "pingreactnative",
+		"version": "1.0.0",
+		"orientation": "default",
+		"icon": "./src/assets/images/icon.png",
+		"scheme": "pingreactnative",
+		"userInterfaceStyle": "automatic",
+		"newArchEnabled": true,
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.audira.pingreactnative.example"
+		},
+		"android": {
+			"adaptiveIcon": {
+				"backgroundColor": "#E6F4FE",
+				"foregroundImage": "./src/assets/images/android-icon-foreground.png",
+				"backgroundImage": "./src/assets/images/android-icon-background.png",
+				"monochromeImage": "./src/assets/images/android-icon-monochrome.png"
+			},
+			"edgeToEdgeEnabled": true,
+			"predictiveBackGestureEnabled": false,
+			"package": "com.audira.pingreactnative.example"
+		},
+		"experiments": {
+			"autolinkingModuleResolution": true,
+			"typedRoutes": true,
+			"reactCompiler": true
+		},
+		"plugins": [
+			[
+				"expo-font",
+				{
+					"fonts": [
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-Thin.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-Thin-Italic.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-ExtraLight.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-ExtraLight-Italic.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-Light.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-Light-Italic.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-Regular.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-Italic.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-Medium.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-Medium-Italic.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-SemiBold.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-SemiBold-Italic.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-Bold.ttf",
+						"../node_modules/@audira/carbon-react-native/assets/fonts/IBMPlexSans-Bold-Italic.ttf"
+					]
+				}
+			],
+			[
+				"expo-splash-screen",
+				{
+					"image": "./src/assets/images/splash-icon.png",
+					"imageWidth": 200,
+					"resizeMode": "contain",
+					"backgroundColor": "#ffffff",
+					"dark": {
+						"backgroundColor": "#000000"
+					}
+				}
+			]
+		]
+	}
 }
