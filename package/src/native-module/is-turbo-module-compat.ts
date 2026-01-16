@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 // @ts-expect-error - See this reference: https://github.com/react-native-community/RNNewArchitectureLibraries/blob/feat/back-turbomodule/example-library/src/index.js
 const turboModuleProxy: boolean | undefined = global.__turboModuleProxy
 
