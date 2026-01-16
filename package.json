@@ -10,27 +10,27 @@
 		"lint": "eslint .",
 		"package-postpack": "node scripts/package-postpack.mjs",
 		"package-prepack": "node scripts/package-prepack.mjs",
-		"type-check": "tsc --project package/tsconfig.json && tsc --project example/tsconfig.json"
+		"type-check": "tsc --build --emitDeclarationOnly"
 	},
 	"devDependencies": {
-		"@eslint/compat": "^1.4.1",
-		"@eslint/js": "^9.39.0",
-		"@react-native/eslint-config": "0.81.4",
-		"@react-native/typescript-config": "0.81.4",
-		"@stylistic/eslint-plugin": "^5.2.3",
+		"@eslint/compat": "^2.0.1",
+		"@react-native/eslint-config": "0.81.5",
+		"@react-native/typescript-config": "0.81.5",
+		"@stylistic/eslint-plugin": "^5.7.0",
 		"@types/node": "^24",
-		"eslint": "^9.39.0",
+		"@types/react": "19.2.8",
+		"eslint": "9.39.2",
 		"eslint-import-resolver-typescript": "^4.4.4",
 		"eslint-plugin-import-x": "^4.16.1",
 		"eslint-plugin-react": "^7.37.5",
 		"eslint-plugin-react-hooks": "7.0.1",
 		"eslint-plugin-react-native": "^5.0.0",
-		"globals": "^16.5.0",
+		"globals": "^17.0.0",
 		"typescript": "5.9.3",
-		"typescript-eslint": "^8.46.2"
+		"typescript-eslint": "^8.53.0"
 	},
 	"engines": {
-		"node": ">=22",
-		"pnpm": ">=10"
+		"node": ">=24",
+		"pnpm": ">=10.17"
 	}
 }

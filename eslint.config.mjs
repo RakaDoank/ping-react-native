@@ -272,12 +272,32 @@ export default [
 		},
 		languageOptions: {
 			parserOptions: {
-				project: [
-					'./example/tsconfig.json',
-					'./package/tsconfig.json',
-				],
+				projectService: true,
 				tsconfigRootDir: import.meta.dirname,
 			},
+		},
+		settings: {
+			"import-x/resolver-next": [
+				EslintImportResolverTypeScript.createTypeScriptImportResolver({
+					project: "./tsconfig.json",
+					// override default https://github.com/import-js/eslint-import-resolver-typescript?tab=readme-ov-file#extensions
+					extensions: [
+						".ts",
+						".tsx",
+						".d.ts",
+						".js",
+						".jsx",
+						".json",
+						".node",
+						".ios.ts", ".ios.tsx",
+						".android.ts", ".android.tsx",
+						".macos.ts", ".macos.tsx",
+						".windows.ts", ".windows.tsx",
+						".native.ts", ".native.tsx",
+						".web.ts", ".web.tsx",
+					],
+				}),
+			],
 		},
 	},
 
