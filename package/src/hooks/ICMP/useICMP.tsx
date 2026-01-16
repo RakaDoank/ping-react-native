@@ -2,19 +2,19 @@ import {
 	useEffect,
 	useRef,
 	useState,
-} from 'react'
+} from "react"
 
 import {
 	ICMP,
-} from '../../ICMP'
+} from "../../ICMP"
 
 import type {
 	ICMPResult,
-} from '../../ICMP/ICMPResult'
+} from "../../ICMP/ICMPResult"
 
 import type {
 	UseICMPProps,
-} from './UseICMPProps'
+} from "./UseICMPProps"
 
 export interface UseICMP {
 	isRunning: boolean,
@@ -36,7 +36,7 @@ export function useICMP({
 			useRef<ICMP>(null),
 
 		[result, setResult] =
-			useState<UseICMP['result']>(undefined)
+			useState<UseICMP["result"]>(undefined)
 
 	useEffect(() => {
 		icmp.current?.stop()

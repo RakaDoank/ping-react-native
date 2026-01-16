@@ -1,13 +1,13 @@
 import {
 	TurboModuleRegistry,
 	type TurboModule,
-} from 'react-native'
+} from "react-native"
 
 import type {
 	EventEmitter,
 	Int32,
 	UnsafeObject,
-} from 'react-native/Libraries/Types/CodegenTypes'
+} from "react-native/Libraries/Types/CodegenTypes"
 
 export interface Spec extends TurboModule {
 	icmp: (
@@ -29,4 +29,4 @@ export interface Spec extends TurboModule {
 	) => Promise<string | null>,
 }
 
-export default TurboModuleRegistry.getEnforcing<Spec>('RNPing')
+export default TurboModuleRegistry.getEnforcing<Spec>("RNPing")

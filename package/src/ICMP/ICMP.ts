@@ -2,27 +2,27 @@ import {
 	NativeEventEmitter,
 	type EventSubscription,
 	type NativeModule as LegacyNativeModule,
-} from 'react-native'
+} from "react-native"
 
 import {
 	NativeModule,
-} from '../native-module'
+} from "../native-module"
 
 import {
 	isTurboModuleCompat,
-} from '../native-module/is-turbo-module-compat'
+} from "../native-module/is-turbo-module-compat"
 
 import type {
 	ICMPConstructorData,
-} from './ICMPConstructorData'
+} from "./ICMPConstructorData"
 
 import type {
 	ICMPResult,
-} from './ICMPResult'
+} from "./ICMPResult"
 
 import {
 	ICMPStatus,
-} from './ICMPStatus'
+} from "./ICMPStatus"
 
 const isTurboModuleEnabled = isTurboModuleCompat()
 
@@ -88,7 +88,7 @@ export class ICMP {
 					}
 				})
 			} else {
-				this.pingEventSubscription = new NativeEventEmitter(NativeModule as unknown as LegacyNativeModule).addListener('PingListener', result => {
+				this.pingEventSubscription = new NativeEventEmitter(NativeModule as unknown as LegacyNativeModule).addListener("PingListener", result => {
 					this.pingEventHandler?.({
 						rtt: result.rtt,
 						status: result.status,

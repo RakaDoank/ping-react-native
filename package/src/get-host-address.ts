@@ -1,6 +1,6 @@
 import {
 	NativeModule,
-} from './native-module'
+} from "./native-module"
 
 /**
  * Gets the host address from a host name. Returns the IP address string in textual presentation.

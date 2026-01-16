@@ -1,26 +1,26 @@
-const targetPath = '../package'
+const targetPath = "../package"
 
 module.exports = {
 	source: `${targetPath}/src`,
 	output: `${targetPath}/lib`,
 	targets: [
 		[
-			'commonjs',
+			"commonjs",
 			{
-				'esm': true,
+				"esm": true,
 			},
 		],
 		[
-			'module',
+			"module",
 			{
-				'esm': true,
+				"esm": true,
 			},
 		],
 		[
-			'typescript',
+			"typescript",
 			{
 				project: `${targetPath}/tsconfig.json`,
-				tsc: '../node_modules/typescript/bin/tsc',
+				tsc: "../node_modules/typescript/bin/tsc",
 			},
 		],
 	],
