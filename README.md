@@ -181,7 +181,7 @@ export default function App(): React.JSX.Element {
     }, [result])
 }
 ```
-You can see full example at [/example/src/screens/ping-runner/index.tsx](https://github.com/RakaDoank/ping-react-native/blob/main/example/src/screens/ping-runner/index.tsx)
+You can see full example at [/example/src/screens/test-use-icmp/Page.tsx](https://github.com/RakaDoank/ping-react-native/blob/main/example/src/screens/test-use-icmp/Page.tsx)
 
 It's safe to unmount your component if the subsequent ICMP request is still running. This hook will do the cleanup automatically.
 
@@ -237,7 +237,11 @@ The Promise will never be rejected. It will return `null` if it fails.
 | `result`      | `object` \| `undefined`             | See [ICMPResult](#icmpresult)
 
 #### UseICMPProps
-It extends [ICMPConstructorData](#icmpconstructordata).
+It extends [ICMPConstructorData](#icmpconstructordata)
+
+| Properties    | Type                                | Remarks                                                                                                        |
+| ------------- | ----------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `enabled`     | `boolean` \| `undefined`            | Default is `true` if the property is undefined
 
 #### ICMPStatus
 | Member                         | Value          | Remarks                                                                              |
