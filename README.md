@@ -183,7 +183,7 @@ export default function App(): React.JSX.Element {
 ```
 You can see full example at [/example/src/screens/ping-runner/index.tsx](https://github.com/RakaDoank/ping-react-native/blob/main/example/src/screens/ping-runner/index.tsx)
 
-It's safe to unmount your component without invoke the `stop` method. This hook will do the cleanup automatically.
+It's safe to unmount your component if the subsequent ICMP request is still running. This hook will do the cleanup automatically.
 
 #### References
 #### - Returns: [UseICMP](#useicmp)
@@ -249,9 +249,11 @@ It extends [ICMPConstructorData](#icmpconstructordata).
 | `UNKNOWN_HOST`                 | `-2`           |
 | `UNKNOWN_FAILURE`              | `-3`           |
 
+#
 ## Migrating V1 to V2
 There is breaking change 2.x version. See [migration guide](https://github.com/RakaDoank/ping-react-native/blob/main/docs/MIGRATING_V1_TO_V2.md).
 
+#
 ## Android Emulator Limitations
 Depending on the environment, the emulator might not be able to support ICMP. See [Local networking limitations](https://developer.android.com/studio/run/emulator-networking#networkinglimitations).
 
