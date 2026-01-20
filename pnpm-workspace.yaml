@@ -4,7 +4,7 @@ nodeLinker: hoisted
 
 packages:
   - builder-bob
-  - example
+  - examples/*
   - package
 
 strictPeerDependencies: false

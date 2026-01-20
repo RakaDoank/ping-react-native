@@ -5,6 +5,8 @@ import ReactNativeEslintConfig from "@react-native/eslint-config"
 
 import StylisticJs from "@stylistic/eslint-plugin"
 
+import * as EslintConfig from "eslint/config"
+
 import * as EslintImportResolverTypeScript from "eslint-import-resolver-typescript"
 
 import * as EslintPluginImportX from "eslint-plugin-import-x"
@@ -19,20 +21,18 @@ import Globals from "globals"
 
 import * as TypeScriptEslint from "typescript-eslint"
 
-export default [
+export default EslintConfig.defineConfig([
 
-	{
-		ignores: [
-			"**/.expo/",
-			"./example/expo-env.d.ts",
-			"**/node_modules/",
-			"package/lib",
-			"**/android/",
-			"**/ios/",
-			"**/apple/",
-			"**/.bundle/",
-		],
-	},
+	EslintConfig.globalIgnores([
+		"**/.expo/",
+		"expo-env.d.ts",
+		"**/node_modules/",
+		"package/lib",
+		"**/android/",
+		"**/ios/",
+		"**/apple/",
+		"**/.bundle/",
+	]),
 
 	EslintJs.configs.recommended,
 
@@ -314,7 +314,7 @@ export default [
 		// React Native files
 
 		files: [
-			"./example/src/**/*.{js,jsx,ts,tsx}",
+			"./examples/*/src/**/*.{js,jsx,ts,tsx}",
 			"./package/src/**/*.{js,jsx,ts,tsx}",
 		],
 		ignores: [
@@ -356,7 +356,8 @@ export default [
 
 	{
 		files: [
-			"./example/*.{js,mjs}",
+			"./examples/*/*.{js,mjs}", // only for js files in the root of example project
+			"./examples/*/scripts/*.{js,mjs}", // only for scripts in the example project
 			"./builder-bob/**/*.{js,mjs}",
 			"./scripts/**/*.{js,mjs}",
 		],
@@ -365,4 +366,4 @@ export default [
 		},
 	},
 
-]
+])

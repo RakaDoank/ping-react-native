@@ -2,7 +2,10 @@
 	"files": [],
 	"references": [
 		{
-			"path": "./example"
+			"path": "./examples/expo"
+		},
+		{
+			"path": "./examples/macos"
 		},
 		{
 			"path": "./package"

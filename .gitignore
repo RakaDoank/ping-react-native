@@ -6,12 +6,21 @@
 .vscode/
 jsconfig.json
 
-# Expo
+# --- Expo & Other Platforms ---
 .expo/
 expo-env.d.ts
-/example/android/
-/example/ios/
-/example/vendor/
+
+# Expo CNG
+/examples/*/android/
+# Expo CNG
+/examples/*/ios/
+
+/examples/*/macos/build/
+/examples/*/macos/Pods/
+/examples/*/macos/.xcode.env*
+
+/examples/*/vendor/
+# --- Expo & Other Platforms ---
 
 # node.js
 #
