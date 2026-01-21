@@ -25,7 +25,7 @@ export default EslintConfig.defineConfig([
 
 	EslintConfig.globalIgnores([
 		"**/.expo/",
-		"expo-env.d.ts",
+		"./examples/*/expo-env.d.ts",
 		"**/node_modules/",
 		"package/lib",
 		"**/android/",
