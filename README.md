@@ -181,7 +181,7 @@ export default function App(): React.JSX.Element {
     }, [result])
 }
 ```
-You can see full example at [/example/src/screens/test-use-icmp/Page.tsx](https://github.com/RakaDoank/ping-react-native/blob/main/example/src/screens/test-use-icmp/Page.tsx)
+You can see full example at [/examples/shared/src/screens/test-use-icmp/Page.tsx](https://github.com/RakaDoank/ping-react-native/blob/main/examples/shared/src/screens/test-use-icmp/Page.tsx)
 
 It's safe to unmount your component if the subsequent ICMP request is still running. This hook will do the cleanup automatically.
 
