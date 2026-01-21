@@ -1,5 +1,6 @@
 import {
 	useLocalSearchParams,
+	useRouter,
 } from "expo-router"
 
 import {
@@ -13,6 +14,9 @@ import type {
 export default function TestICMPPage() {
 
 	const
+		router =
+			useRouter(),
+
 		{
 			host,
 			count,
@@ -27,6 +31,7 @@ export default function TestICMPPage() {
 
 	return (
 		<TestICMPScreen.Page
+			backHandler={ router.back }
 			host={ host }
 			count={ strToNumber(count) }
 			interval={ strToNumber(interval) }
