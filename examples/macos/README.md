@@ -1,7 +1,8 @@
 This is a [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Patch
+# Patches
 
+## macOS related patches
 This monorepo setup breaks the react-native scripts. All those scripts point to the wrong node_modules path. **Please patch it after pod installation**
 
 #### `/ping-react-native/examples/macos/macos/Pods/Pods.xcodeproj/project.pbxproj`
@@ -14,6 +15,18 @@ Update the `REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";`
 If you have any solutions better than this patches. Please, feel free to fix this.
 
 I'm sorry for my lack of knowledge about iOS/macOS app build system.
+
+## react-native-macos mismatch React version
+This monorepo use single React package that is also used by Expo example project. For a while, just override the version checker
+
+Find these files:
+- /node_modules/react-native-macos/Libraries/Renderer/implementations/ReactNativeRenderer-dev.js
+- /node_modules/react-native-macos/Libraries/Renderer/implementations/ReactNativeRenderer-prod.js
+- /node_modules/react-native-macos/Libraries/Renderer/implementations/ReactNativeRenderer-profiling.js
+
+In your IDE or any text editors, find this `if ("19.1.4" !== isomorphicReactPackageVersion)` snippet. Just remove or mark as comment the whole if statement block.
+
+> I'm sorry, I don't make a `pnpm` patch yet.
 
 # Getting Started
 
@@ -46,6 +59,7 @@ Then, and every time you update your native dependencies, run:
 ```sh
 bundle exec pod install
 ```
+> :warning: Please see [macOS related patches](#macos-related-patches) after every pod installation
 
 For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
 
