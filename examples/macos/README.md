@@ -6,11 +6,20 @@ This is a [**React Native**](https://reactnative.dev) project, bootstrapped usin
 This monorepo setup breaks the react-native scripts. All those scripts point to the wrong node_modules path. **Please patch it after pod installation**
 
 #### `/ping-react-native/examples/macos/macos/Pods/Pods.xcodeproj/project.pbxproj`
-Update the `REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";` to `REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../node_modules/react-native";`
+Update the `REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";`, change it to
+```
+REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../node_modules/react-native";
+```
 
 #### `/ping-react-native/examples/macos/macos/pingreactnativemacos.xcodeproj/project.pbxproj`
-- On the `export NODE_BINARY=...`, change it to `export NODE_BINARY=node\n../../../node_modules/react-native-macos/scripts/react-native-xcode.sh\n`
-- Find `REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";`, i found two results, likely for debug and release, change it to `REACT_NATIVE_PATH = "${PODS_ROOT}/../../../node_modules/react-native-macos";`
+- Find `export NODE_BINARY=`, change it to
+  ```
+  export NODE_BINARY=node\n../../../node_modules/react-native-macos/scripts/react-native-xcode.sh\n
+  ```
+- Find `REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";`, it likely has two results in your IDE or text editor, it's for debug and release, change it to
+  ```
+  REACT_NATIVE_PATH = "${PODS_ROOT}/../../../node_modules/react-native-macos";
+  ```
 
 If you have any solutions better than this patches. Please, feel free to fix this.
 
