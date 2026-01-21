@@ -8,11 +8,11 @@ Thank you for your support to this library. This documentation will help you how
   - [1. NPM Dependencies Installation](#1-npm-dependencies-installation)
   - [2. Library Installation with Example App](#2-library-installation-with-example-app)
     - [Android](#android)
-    - [iOS](#ios)
-    - [macOS](#macos)
+    - [iOS & macOS](#ios--macos)
 - [Run the Example App](#run-the-example-app)
   - [Android](#android-1)
-  - [iOS](#ios-1)
+  - [iOS](#ios)
+  - [macOS](#macos)
 - [Conventions](#conventions)
   - [JavaScript/TypeScript](#javascripttypescript)
   - [Java/Kotlin](#javakotlin)
@@ -58,39 +58,40 @@ pnpm install
 This installation will install all the npm dependencies including the `react-native` example app.
 
 ### 2. Library Installation with Example App
-In this project, the example app at the `ping-react-native/example` directory is the app we will use as the library playground to use for the library development. The app was bootstrapped with [@react-native-community/cli](https://github.com/react-native-community/cli) with [some modificiations](#about-the-example-app-and-the-library-in-monorepo-setup).
+In this project, the example app at the `ping-react-native/examples/{expo,macos}` directory is the app we will use as the library playground to use for the library development. The app was bootstrapped with [@react-native-community/cli](https://github.com/react-native-community/cli) with [some modificiations](#about-the-example-app-and-the-library-in-monorepo-setup).
 To setup the React Native app and link the library (`ping-react-native`) itself are similar like the usual React Native CLI installation with autolinking of React Native libraries
 
 #### Android
-1. Open the `ping-react-native/example/android` directory with **Android Studio**
+1. Open the `ping-react-native/examples/expo/android` directory with **Android Studio**
 2. Sync project with gradle files
 3. You should see `ping-react-native` in the sidebar explorer of Android Studio with `Android` mode directory. This is where the library code lives you can actually do any fixes
 
-#### iOS
+#### iOS & macOS
 Beforehand, make sure you are with Ruby >= 3.3.6 version
 1. Open your terminal
-2. Go to the `ping-react-native/example/ios` directory
+2. Go to `ping-react-native/examples/expo/ios` directory for iOS, or go to `ping-react-native/examples/macos` directory for macOS
 3. Install the pods by run this command
 ```
 bundle install && bundle exec pod install
 ```
-4. Open the `ping-react-native/example/ios/example.xcworkspace` directory with **Xcode**
+4. Open **Xcode** app, and open the `ping-react-native/examples/expo/{ios,macos}/{projectName}.xcworkspace`
 5. You should see `RNPing` folder in the `Pods > Development Tools` from the sidebar navigator. This is where the library code lives you can actually do any fixes
-
-#### macOS
-⚠️ The example app is not compatible with the macOS React Native app yet. Soon this documentation will be updated
+6. (⚠️ For macOS only) you need to patch some files to make the app run properly because react-native scripts are pointing to the wrong `node_modules` path. See this [README.md](https://github.com/RakaDoank/ping-react-native/blob/main/examples/macos/README.md)
 
 ## Run the Example App
 
 ### Android
 For Android, you need to run with physical Android devices. See [Emulator Networking](https://developer.android.com/studio/run/emulator-networking#networkinglimitations). Connect your Android with USB or you can [connect it over Wi-Fi](https://developer.android.com/tools/adb#connect-to-a-device-over-wi-fi). Run `adb devices` in your terminal or cmd, and make sure your devices are listed.
 
-After that, you can run the app. Go the `example` directory, run `npm run android`. Alternatively, you can run the metro first by execute `npm run start`, and then run `npm run android` later.
+After that, you can run the app. Go to `examples/expo` directory, run `npm run android`. Alternatively, you can run the metro first by execute `npm run start`, and then run `npm run android` later.
 
 ### iOS
 For iOS, you need run your iPhone/iPad Simulator first.
 
-After it's completely booted up, you can run the app. Go the `example` directory, run `npm run ios`. Alternatively, you can run the metro first by execute `npm run start`, and then run `npm run ios` later.
+After it's completely booted up, you can run the app. Go the `examples/expo` directory, run `npm run ios`. Alternatively, you can run the metro first by execute `npm run start`, and then run `npm run ios` later.
+
+### macOS
+For macOS, go to `examples/macos`. In the directory, run the metro first by execute `npm run start`, and then run `npm run macos`.
 
 ## Conventions
 
@@ -99,7 +100,7 @@ All the JavaScript/TypeScript has been lint-checked with ESLint, and type-checke
 
 While development, ensure that your ESLint Extension of your Visual Studio Code is running if you are using that IDE. Alternatively, you can run `npm run code-check` in the root of repository.
 
-You can check the lint rules at [ping-react-native/eslint.config.mjs](https://github.com/RakaDoank/ping-react-native/blob/main/eslint.config.mjs) and the `compilerOptions` of TypeScript at [ping-react-native/tsconfig.json](https://github.com/RakaDoank/ping-react-native/blob/main/tsconfig.json) and other `tsconfig.json` files in the `example` and `package` directory.
+You can check the lint rules at [ping-react-native/eslint.config.mjs](https://github.com/RakaDoank/ping-react-native/blob/main/eslint.config.mjs) and the `compilerOptions` of TypeScript at [ping-react-native/tsconfig.base.json](https://github.com/RakaDoank/ping-react-native/blob/main/tsconfig.base.json) and other `tsconfig.json` files in the `examples/*` and `package` directory.
 
 ### Java/Kotlin
 The convention for the project for Java/Kotlin code is only indentatation with Tab
@@ -110,13 +111,11 @@ Please, follow the [Google Objective-C Style Guide](https://google.github.io/sty
 ## Directories
 - `.github`: You don't have to worry about this directory
 - `builder-bob`: This directory is for the builder of React Native library with hard-coded path configuration to the `package` directory. You can read [this documentation](https://callstack.github.io/react-native-builder-bob/build)
-- `example`: This is the actual of React Native app as the playground of the library development
+- `examples`: This is the actual of React Native app as the playground of the library development. For Android & iOS, it lives in `examples/expo` directory, and macOS in `examples/macos`
 - `package`: This is the actual `ping-react-native` library source code lives. This directory will be used as the actual `ping-react-native` library in the npm registry
 
-## About the Example App and the Library in Monorepo Setup
-The app was actually bootstrapped with [@react-native-community/cli](https://github.com/react-native-community/cli), but since this project is a monorepo setup with `PNPM` to scaffold both app and actual library deployment. There are modifications that have been done in the example app to split between the app, the actual `ping-react-native` library, and other development tools or the `devDependencies`
-- `ping-react-native/example/android/app/build.gradle`: You see the `react` ext has configured and remapped where the `node_modules` directory actually lives instead of the default path
-- `ping-react-native/example/android/settings.gradle`: Same as the `app/build.gradle`, the `node_modules` path has been remapped to the correct directory
-- `ping-react-native/example/metro.config.js`: The example app has to know where the `node_modules` and the actual `ping-react-native` directory lives without including the `ping-react-native` in the `dependencies` of the `package.json` example app
-- `ping-react-native/example/react-native.config.js`: Since the actual `ping-react-native` library is not included as `dependencies` in the `package.json` file of example app, we have to tell React Native CLI where the `ping-react-native` directory lives to auto-linked the example app with `ping-react-native` library in development
+## About the Example Apps and the Library in Monorepo Setup
+The app was actually bootstrapped with [@react-native-community/cli](https://github.com/react-native-community/cli) for macOS, and Android & iOS with Expo, but since this project is a monorepo setup with `PNPM` to scaffold both app and actual library deployment. There are modifications that have been done in the example app to split between the app, the actual `ping-react-native` library, and other development tools or the `devDependencies`
+- `ping-react-native/examples/{expo,macos}/metro.config.js`: The example app has to know where the `node_modules` and the actual `ping-react-native` directory lives without including the `ping-react-native` in the `dependencies` of the `package.json` example app
+- `ping-react-native/examples/{expo,macos}/react-native.config.js`: Since the actual `ping-react-native` library is not included as `dependencies` in the `package.json` file of example app, we have to tell React Native CLI where the `ping-react-native` directory lives to auto-linked the example app with `ping-react-native` library in development
 - `@react-native/eslint-config` development dependency (`devDependencies`) was moved out to the root of `package.json` (repository) from the `example` app

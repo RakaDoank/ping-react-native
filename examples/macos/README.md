@@ -1,20 +1,19 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+This is a [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Patch
 
-This monorepo setup breaks the react-native scripts. All those scripts point to the wrong node_modules path. Please patch it after pod installation
+This monorepo setup breaks the react-native scripts. All those scripts point to the wrong node_modules path. **Please patch it after pod installation**
 
-- `/ping-react-native/examples/macos/macos/Pods/Pods.xcodeproj/project.pbxproj`
-Update the REACT_NATIVE_PATH to `REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../node_modules/react-native";`
+#### `/ping-react-native/examples/macos/macos/Pods/Pods.xcodeproj/project.pbxproj`
+Update the `REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";` to `REACT_NATIVE_PATH = "${PODS_ROOT}/../../../../node_modules/react-native";`
 
-- `/ping-react-native/examples/macos/macos/pingreactnativemacos.xcodeproj/project.pbxproj`
-Update the `Bundle React Native code and images` scripts (i found two scripts there).
+#### `/ping-react-native/examples/macos/macos/pingreactnativemacos.xcodeproj/project.pbxproj`
+- On the `export NODE_BINARY=...`, change it to `export NODE_BINARY=node\n../../../node_modules/react-native-macos/scripts/react-native-xcode.sh\n`
+- Find `REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";`, i found two results, likely for debug and release, change it to `REACT_NATIVE_PATH = "${PODS_ROOT}/../../../node_modules/react-native-macos";`
 
-On the `export NODE_BINARY`, change it to
-`export NODE_BINARY=node\n../../../node_modules/react-native-macos/scripts/react-native-xcode.sh\n`
+If you have any solutions better than this patches. Please, feel free to fix this.
 
-> If you have any solutions better than this patches. Please, feel free to fix this.
-> I'm sorry for my lack of knowledge about iOS/macOS app build system.
+I'm sorry for my lack of knowledge about iOS/macOS app build system.
 
 # Getting Started
 
@@ -27,11 +26,7 @@ First, you will need to run **Metro**, the JavaScript build tool for React Nativ
 To start the Metro dev server, run the following command from the root of your React Native project:
 
 ```sh
-# Using npm
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
 ## Step 2: Build and run your app
@@ -55,11 +50,7 @@ bundle exec pod install
 For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
 
 ```sh
-# Using npm
 npm run macos
-
-# OR using pnpm
-pnpm run macos
 ```
 
 ## Congratulations! :tada:

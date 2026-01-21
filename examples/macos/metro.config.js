@@ -7,7 +7,10 @@ const
 
 const
 	workspacePath =
-		node_path.join(__dirname, "..", "..")
+		node_path.join(__dirname, "..", ".."),
+
+	defaultConfig =
+		getDefaultConfig(__dirname)
 
 /**
  * Metro configuration
@@ -20,10 +23,28 @@ const config = {
 	projectRoot: __dirname,
 
 	resolver: {
+		...defaultConfig.resolver,
+		assetExts: [
+			...(defaultConfig.resolver?.assetExts?.filter(ext => ext !== "svg") ?? []),
+		],
+		extraNodeModules: {
+			...defaultConfig.resolver?.extraNodeModules,
+			"ping-react-native": node_path.join(workspacePath, "package", "src"),
+		},
 		nodeModulesPaths: [
+			...defaultConfig.resolver?.nodeModulesPaths ?? [],
 			node_path.join(__dirname, "node_modules"),
 			node_path.join(workspacePath, "node_modules"),
 		],
+		sourceExts: [
+			...(defaultConfig.resolver?.sourceExts ?? []),
+			"svg",
+		],
+	},
+
+	transformer: {
+		...defaultConfig.transformer,
+		babelTransformerPath: require.resolve("react-native-svg-transformer/react-native"),
 	},
 
 	watchFolders: [
@@ -32,7 +53,4 @@ const config = {
 
 }
 
-module.exports = mergeConfig(
-	getDefaultConfig(__dirname),
-	config,
-);
+module.exports = mergeConfig(defaultConfig, config)
