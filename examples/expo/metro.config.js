@@ -13,11 +13,8 @@ const
 		require("expo/metro-config")
 
 const
-	projectRoot =
-		__dirname,
-
-	workspaceRoot =
-		node_path.resolve(projectRoot, ".."),
+	workspacePath =
+		node_path.resolve(__dirname, "..", ".."),
 
 	defaultConfig =
 		getDefaultConfig(__dirname)
@@ -30,19 +27,19 @@ const
  */
 const config = {
 
-	projectRoot,
+	projectRoot: __dirname,
 
 	resolver: {
 		...defaultConfig.resolver,
 		assetExts: [
-			...defaultConfig.resolver.assetExts.filter(ext => ext !== "svg"),
+			...(defaultConfig.resolver?.assetExts.filter(ext => ext !== "svg") ?? []),
 		],
 		extraNodeModules: {
-			...defaultConfig.resolver.extraNodeModules,
-			"ping-react-native": node_path.join(workspaceRoot, "package", "src"),
+			...defaultConfig.resolver?.extraNodeModules,
+			"ping-react-native": node_path.join(workspacePath, "package", "src"),
 		},
 		sourceExts: [
-			...defaultConfig.resolver.sourceExts ?? [],
+			...(defaultConfig.resolver?.sourceExts ?? []),
 			"svg",
 		],
 	},
@@ -52,6 +49,6 @@ const config = {
 		babelTransformerPath: require.resolve("react-native-svg-transformer/expo"),
 	},
 
-};
+}
 
-module.exports = mergeConfig(defaultConfig, config);
+module.exports = mergeConfig(defaultConfig, config)
