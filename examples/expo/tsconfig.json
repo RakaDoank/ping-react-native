@@ -9,15 +9,15 @@
 				"./src/*"
 			],
 			"ping-react-native": [
-				"../package/src/index"
+				"../../package/src/index"
 			]
 		}
 	},
 	"include": [
+		"../../package/src/**/*",
 		"./__tests__/**/*",
 		"./src/**/*",
 		".expo/types/**/*.ts",
-		"expo-env.d.ts",
-		"../package/src/**/*"
+		"expo-env.d.ts"
 	]
 }

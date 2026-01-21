@@ -2,13 +2,13 @@ import {
 	useLocalSearchParams,
 } from "expo-router"
 
+import {
+	TestICMPScreen,
+} from "@examples/shared/screens"
+
 import type {
 	ICMPConstructorData,
 } from "ping-react-native"
-
-import {
-	TestICMPScreen,
-} from "@/screens"
 
 export default function TestICMPPage() {
 

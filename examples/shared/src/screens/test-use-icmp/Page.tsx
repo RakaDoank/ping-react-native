@@ -19,6 +19,7 @@ import type {
 } from "./PageProps"
 
 export function Page({
+	backHandler,
 	host,
 	count,
 	interval,
@@ -28,7 +29,9 @@ export function Page({
 }: PageProps) {
 
 	return (
-		<TestICMPScreen.PageView>
+		<TestICMPScreen.PageView
+			backHandler={ backHandler }
+		>
 			<Content
 				host={ host }
 				count={ count }
@@ -42,7 +45,7 @@ export function Page({
 
 }
 
-interface ContentProps extends PageProps {
+interface ContentProps extends Omit<PageProps, "backHandler"> {
 }
 function Content({
 	host,
@@ -73,6 +76,7 @@ function Content({
 
 	useEffect(() => {
 		if(result) {
+			console.log("useICMP ", result)
 			textResultRef.current?.setResult({ ...result })
 			if(result.isEnded) {
 				// eslint-disable-next-line react-hooks/set-state-in-effect

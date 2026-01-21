@@ -1,0 +1,19 @@
+{
+	"name": "@examples/shared",
+	"version": "0.0.1",
+	"peerDependencies": {
+		"@audira/carbon-react-native": "1.0.0-beta.7",
+		"@audira/carbon-react-native-elements": ">=1",
+		"@carbon/icons": "^11",
+		"react": ">=19",
+		"react-native": ">=0.81",
+		"react-native-safe-area-context": ">=5"
+	},
+	"files": [
+		"src"
+	],
+	"exports": {
+		"./screens": "./src/screens/index.ts",
+		"./style-sheets": "./src/style-sheets/index.ts"
+	}
+}

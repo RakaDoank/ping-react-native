@@ -25,7 +25,7 @@ import {
 
 import {
 	FlexStyleSheet,
-} from "@/style-sheets"
+} from "../../../style-sheets"
 
 import type {
 	ModalGetHostAddressProps,
@@ -86,7 +86,7 @@ export function ModalGetHostAddress({
 			] }
 		>
 			<ModalContent
-				style={ FlexStyleSheet.flex_1 }
+				style={ FlexStyleSheet.flex_auto }
 			>
 				<TextInput
 					label="Host"

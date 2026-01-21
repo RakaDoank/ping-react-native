@@ -27,6 +27,7 @@ import {
 } from "./text-result"
 
 export function Page({
+	backHandler,
 	host,
 	count,
 	interval,
@@ -56,7 +57,9 @@ export function Page({
 
 		onPing: Parameters<ICMP["ping"]>[0] =
 			result => {
+				console.log("onPing ", result)
 				textResultRef.current?.setResult({ ...result })
+
 				if(result.isEnded) {
 					buttonTogglerRef.current?.setState("stopped")
 				}
@@ -79,7 +82,9 @@ export function Page({
 	}, [])
 
 	return (
-		<PageView>
+		<PageView
+			backHandler={ backHandler }
+		>
 			<TextResult
 				limit={ count ?? 10 }
 				ref={ textResultRef }

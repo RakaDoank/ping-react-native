@@ -4,18 +4,23 @@ import {
 } from "react-native"
 
 import {
+	Button,
+} from "@audira/carbon-react-native"
+
+import {
 	Spacing,
 } from "@audira/carbon-react-native-elements"
 
 import {
 	FlexStyleSheet,
-} from "@/style-sheets"
+} from "../../style-sheets"
 
 import type {
 	PageViewProps,
 } from "./PageViewProps"
 
 export function PageView({
+	backHandler,
 	children,
 	style,
 	...props
@@ -37,6 +42,11 @@ export function PageView({
 					styleSheet.contentContainer,
 				] }
 			>
+				<Button.Tertiary
+					text="Back"
+					onPress={ backHandler }
+				/>
+
 				{ children }
 			</View>
 		</View>
@@ -54,5 +64,8 @@ const
 				width: "100%",
 				maxWidth: 420,
 				rowGap: Spacing.spacing_05,
+			},
+			buttonBack: {
+				marginBottom: Spacing.spacing_05,
 			},
 		})

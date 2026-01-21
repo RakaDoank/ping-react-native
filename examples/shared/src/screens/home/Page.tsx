@@ -8,10 +8,6 @@ import {
 } from "react-native"
 
 import {
-	useRouter,
-} from "expo-router"
-
-import {
 	Button,
 	CarbonStyleSheet,
 	DialogContext,
@@ -21,11 +17,13 @@ import {
 	Spacing,
 } from "@audira/carbon-react-native-elements"
 
-import IconChevronRight from "@carbon/icons/svg/chevron--right.svg"
-
 import {
 	FlexStyleSheet,
-} from "@/style-sheets"
+} from "../../style-sheets"
+
+import type {
+	PageProps,
+} from "./PageProps"
 
 import {
 	ModalGetHostAddress,
@@ -35,7 +33,9 @@ import {
 	ModalGetHostname,
 } from "./_modal-get-hostname"
 
-export function Page() {
+export function Page({
+	toICMPInputsHandler,
+}: PageProps) {
 
 	CarbonStyleSheet.use()
 
@@ -43,17 +43,14 @@ export function Page() {
 		dialogContext =
 			useContext(DialogContext),
 
-		router =
-			useRouter(),
-
 		navigateToICMPInputs_ICMP =
 			() => {
-				router.navigate("/icmp-inputs/icmp")
+				toICMPInputsHandler("icmp")
 			},
 
 		navigateToICMPInputs_UseICMP =
 			() => {
-				router.navigate("/icmp-inputs/use-icmp")
+				toICMPInputsHandler("use_icmp")
 			},
 
 		dismissModal =
@@ -96,25 +93,21 @@ export function Page() {
 		>
 			<Button.Tertiary
 				text="ICMP"
-				Icon={ IconChevronRight }
 				onPress={ navigateToICMPInputs_ICMP }
 				style={ styleSheet.button }
 			/>
 			<Button.Tertiary
 				text="useICMP"
-				Icon={ IconChevronRight }
 				onPress={ navigateToICMPInputs_UseICMP }
 				style={ styleSheet.button }
 			/>
 			<Button.Tertiary
 				text="getHostname"
-				Icon={ IconChevronRight }
 				onPress={ showModalGetHostname }
 				style={ styleSheet.button }
 			/>
 			<Button.Tertiary
 				text="getHostAddress"
-				Icon={ IconChevronRight }
 				onPress={ showModalGetHostAddress }
 				style={ styleSheet.button }
 			/>

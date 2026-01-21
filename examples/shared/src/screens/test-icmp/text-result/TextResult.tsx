@@ -23,7 +23,7 @@ import {
 
 import {
 	FlexStyleSheet,
-} from "@/style-sheets"
+} from "../../../style-sheets"
 
 import type {
 	TextResultProps,

@@ -4,7 +4,7 @@ import {
 
 import {
 	ICMPInputsScreen,
-} from "@/screens"
+} from "@examples/shared/screens"
 
 export default function ICMPInputsForUseICMP() {
 
@@ -22,6 +22,7 @@ export default function ICMPInputsForUseICMP() {
 
 	return (
 		<ICMPInputsScreen.Page
+			backHandler={ router.back }
 			onSubmit={ submitHandler }
 		/>
 	)

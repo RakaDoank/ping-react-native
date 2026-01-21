@@ -8,10 +8,6 @@ import {
 } from "react-native"
 
 import {
-	useRouter,
-} from "expo-router"
-
-import {
 	Button,
 	ButtonGroup,
 	TextInput,
@@ -28,13 +24,16 @@ import {
 
 import {
 	FlexStyleSheet,
-} from "@/style-sheets"
+} from "../../style-sheets"
 
 import type {
 	PageProps,
 } from "./PageProps"
 
-export function Page({ onSubmit }: PageProps) {
+export function Page({
+	backHandler,
+	onSubmit,
+}: PageProps) {
 
 	const
 		configRef =
@@ -46,9 +45,6 @@ export function Page({ onSubmit }: PageProps) {
 				timeout: 1000,
 				ttl: 54,
 			}),
-
-		router =
-			useRouter(),
 
 		onChangeHost: TextInputProps["onChangeText"] =
 			text => {
@@ -146,7 +142,7 @@ export function Page({ onSubmit }: PageProps) {
 				button1={
 					<Button.Ghost
 						text="Dismiss"
-						onPress={ router.back }
+						onPress={ backHandler }
 					/>
 				}
 				button2={

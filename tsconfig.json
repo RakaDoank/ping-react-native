@@ -8,6 +8,9 @@
 			"path": "./examples/macos"
 		},
 		{
+			"path": "./examples/shared",
+		},
+		{
 			"path": "./package"
 		}
 	]

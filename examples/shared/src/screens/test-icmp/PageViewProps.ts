@@ -3,4 +3,5 @@ import type {
 } from "react-native"
 
 export interface PageViewProps extends ViewProps {
+	backHandler: () => void,
 }
