@@ -12,7 +12,7 @@ jobs:
   test-build:
     name: Test Build
     runs-on: ubuntu-latest
-    environment: RELEASE
+    environment: test-build
     permissions:
       contents: read
       id-token: write
