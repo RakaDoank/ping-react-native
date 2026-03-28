@@ -1,6 +1,14 @@
 This is a [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
+# Not in PNPM Workspaces
+
+For this moment, just use "npm install" in this example project. The hacks are too difficult to maintain, like pointing to the correct React Native directory and use the same React Native version with the Expo.
+
+I keep this ["Patches"](#patches) section below for the history sake of how to hack the macOS project to work with PNPM monorepo configurations
+
 # Patches
+
+> Only for monorepo setup
 
 ## macOS related patches
 This monorepo setup breaks the react-native scripts. All those scripts point to the wrong node_modules path. **Please patch it after pod installation**

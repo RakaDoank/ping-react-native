@@ -71,12 +71,16 @@ export class ICMP {
 
 			this.pingEventHandler = onPing
 
-			/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 			if(isTurboModuleEnabled) {
 				this.pingEventSubscription = NativeModule.pingListener((
-					// eslint-disable-next-line @typescript-eslint/no-explicit-any
-					result: Record<string, any>,
+					res,
 				) => {
+					const result = res as {
+						rtt: number,
+						status: number,
+						ttl: number,
+						isEnded: boolean,
+					}
 					this.pingEventHandler?.({
 						rtt: result.rtt,
 						status: result.status,
@@ -88,7 +92,13 @@ export class ICMP {
 					}
 				})
 			} else {
-				this.pingEventSubscription = new NativeEventEmitter(NativeModule as unknown as LegacyNativeModule).addListener("PingListener", result => {
+				this.pingEventSubscription = new NativeEventEmitter(NativeModule as unknown as LegacyNativeModule).addListener("PingListener", res => {
+					const result = res as {
+						rtt: number,
+						status: number,
+						ttl: number,
+						isEnded: boolean,
+					}
 					this.pingEventHandler?.({
 						rtt: result.rtt,
 						status: result.status,
@@ -100,7 +110,6 @@ export class ICMP {
 					}
 				})
 			}
-			/* eslint-enable @typescript-eslint/no-unsafe-member-access */
 		} else {
 			onPing({
 				rtt: ICMP.NO_ECHO_RTT,

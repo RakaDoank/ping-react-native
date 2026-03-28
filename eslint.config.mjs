@@ -11,11 +11,11 @@ import * as EslintImportResolverTypeScript from "eslint-import-resolver-typescri
 
 import * as EslintPluginImportX from "eslint-plugin-import-x"
 
-import ReactEslintPlugin from "eslint-plugin-react"
+import EslintPluginReact from "eslint-plugin-react"
 
-import ReactHooksEslintPlugin from "eslint-plugin-react-hooks"
+import * as EslintPluginReactHooks from "eslint-plugin-react-hooks"
 
-import ReactNativeEslintPlugin from "eslint-plugin-react-native"
+import EslintPluginReactNative from "eslint-plugin-react-native"
 
 import Globals from "globals"
 
@@ -26,6 +26,11 @@ export default EslintConfig.defineConfig([
 	EslintConfig.globalIgnores([
 		"**/.expo/",
 		"./examples/*/expo-env.d.ts",
+
+		// We have to exclude macOS project, because they are not in PNPM workspaces (monorepo)
+		// you can remove this ignore temporarily to test `examples/macOS` lint
+		"./examples/macos/",
+
 		"**/node_modules/",
 		"package/lib",
 		"**/android/",
@@ -276,8 +281,6 @@ export default EslintConfig.defineConfig([
 			"@typescript-eslint/no-floating-promises": "off",
 			"@typescript-eslint/no-namespace": "off",
 			"@typescript-eslint/no-require-imports": "off",
-			"@typescript-eslint/no-unsafe-argument": "off",
-			"@typescript-eslint/no-unsafe-assignment": "off",
 		},
 		languageOptions: {
 			parserOptions: {
@@ -290,6 +293,7 @@ export default EslintConfig.defineConfig([
 				EslintImportResolverTypeScript.createTypeScriptImportResolver({
 					project: "./tsconfig.json",
 					// override default https://github.com/import-js/eslint-import-resolver-typescript?tab=readme-ov-file#extensions
+					alwaysTryTypes: true,
 					extensions: [
 						".ts",
 						".tsx",
@@ -314,11 +318,8 @@ export default EslintConfig.defineConfig([
 		// React Native files
 
 		files: [
-			"./examples/*/src/**/*.{js,jsx,ts,tsx}",
-			"./package/src/**/*.{js,jsx,ts,tsx}",
-		],
-		ignores: [
-			"node_modules/react-native/Libraries/Types/CodegenTypes.js",
+			"./examples/*/src/**/*.{ts,tsx}",
+			"./package/src/**/*.{ts,tsx}",
 		],
 		settings: {
 			react: {
@@ -326,23 +327,24 @@ export default EslintConfig.defineConfig([
 			},
 		},
 		plugins: {
-			...ReactEslintPlugin.configs.flat["jsx-runtime"].plugins,
-			"react-hooks": EslintCompat.fixupPluginRules(ReactHooksEslintPlugin),
-			"react-native": EslintCompat.fixupPluginRules(ReactNativeEslintPlugin),
+			...EslintPluginReact.configs.flat["jsx-runtime"].plugins,
+			"react-hooks": EslintCompat.fixupPluginRules(EslintPluginReactHooks),
+			"react-native": EslintCompat.fixupPluginRules(EslintPluginReactNative),
 		},
 		languageOptions: {
-			...ReactEslintPlugin.configs.flat["jsx-runtime"].languageOptions,
+			...EslintPluginReact.configs.flat["jsx-runtime"].languageOptions,
 			globals: {
 				...ReactNativeEslintConfig.globals,
 			},
 		},
 		rules: {
-			...ReactEslintPlugin.configs.flat.recommended.rules,
-			...ReactEslintPlugin.configs.flat["jsx-runtime"].rules,
-			...ReactHooksEslintPlugin.configs.recommended.rules,
+			...EslintPluginReact.configs.flat.recommended.rules,
+			...EslintPluginReact.configs.flat["jsx-runtime"].rules,
+			// eslint-disable-next-line import-x/namespace
+			...EslintPluginReactHooks.configs.recommended.rules,
 
 			/**
-			 * Take rules from @react-native/eslint-config (not all of it) that doesn't included in eslint-plugin-react & eslint-plugin-react-hooks recommended rules
+			 * Take rules from @react-native/eslint-config (not all of it) that doesn"t included in eslint-plugin-react & eslint-plugin-react-hooks recommended rules
 			 * https://github.com/facebook/react-native/blob/22e7691473a0e895385e03743186aaa32add6731/packages/eslint-config-react-native/index.js#L301
 			 */
 			"react/display-name": "off",
@@ -356,9 +358,8 @@ export default EslintConfig.defineConfig([
 
 	{
 		files: [
-			"./examples/*/*.{js,mjs}", // only for js files in the root of example project
-			"./examples/*/scripts/*.{js,mjs}", // only for scripts in the example project
-			"./builder-bob/**/*.{js,mjs}",
+			"./examples/*/*.{js,mjs,ts}",
+			"./package-builder/**/*.{js,mjs}",
 			"./scripts/**/*.{js,mjs}",
 		],
 		languageOptions: {

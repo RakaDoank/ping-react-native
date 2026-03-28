@@ -4,9 +4,11 @@
 		{
 			"path": "./examples/expo"
 		},
-		{
-			"path": "./examples/macos"
-		},
+		// At this moment
+		// We have to exclude macOS project, because they are not in PNPM workspaces (monorepo)
+		// {
+		// 	"path": "./examples/macos"
+		// },
 		{
 			"path": "./examples/shared",
 		},

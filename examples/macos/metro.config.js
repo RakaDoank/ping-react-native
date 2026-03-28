@@ -31,11 +31,12 @@ const config = {
 			...defaultConfig.resolver?.extraNodeModules,
 			"ping-react-native": node_path.join(workspacePath, "package", "src"),
 		},
-		nodeModulesPaths: [
-			...defaultConfig.resolver?.nodeModulesPaths ?? [],
-			node_path.join(__dirname, "node_modules"),
-			node_path.join(workspacePath, "node_modules"),
-		],
+		// only for monorepo setup
+		// nodeModulesPaths: [
+		// 	...defaultConfig.resolver?.nodeModulesPaths ?? [],
+		// 	node_path.join(__dirname, "node_modules"),
+		// 	node_path.join(workspacePath, "node_modules"),
+		// ],
 		sourceExts: [
 			...(defaultConfig.resolver?.sourceExts ?? []),
 			"svg",
@@ -47,9 +48,10 @@ const config = {
 		babelTransformerPath: require.resolve("react-native-svg-transformer/react-native"),
 	},
 
-	watchFolders: [
-		workspacePath,
-	],
+	// only for monorepo setup
+	// watchFolders: [
+	// 	workspacePath,
+	// ],
 
 }
 

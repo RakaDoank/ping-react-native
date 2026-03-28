@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 // @ts-expect-error - See this reference: https://github.com/react-native-community/RNNewArchitectureLibraries/blob/feat/back-turbomodule/example-library/src/index.js
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const turboModuleProxy: boolean | undefined = global.__turboModuleProxy
 
 /**

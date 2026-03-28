@@ -110,12 +110,12 @@ Please, follow the [Google Objective-C Style Guide](https://google.github.io/sty
 
 ## Directories
 - `.github`: You don't have to worry about this directory
-- `builder-bob`: This directory is for the builder of React Native library with hard-coded path configuration to the `package` directory. You can read [this documentation](https://callstack.github.io/react-native-builder-bob/build)
 - `examples`: This is the actual of React Native app as the playground of the library development. For Android & iOS, it lives in `examples/expo` directory, and macOS in `examples/macos`
 - `package`: This is the actual `ping-react-native` library source code lives. This directory will be used as the actual `ping-react-native` library in the npm registry
+- `package-builder`: This directory is for the builder of the actual library with hard-coded path configuration to the `package` directory. You can read [this documentation](https://callstack.github.io/react-native-builder-bob/build)
 
 ## About the Example Apps and the Library in Monorepo Setup
-The app was actually bootstrapped with [@react-native-community/cli](https://github.com/react-native-community/cli) for macOS, and Android & iOS with Expo, but since this project is a monorepo setup with `PNPM` to scaffold both app and actual library deployment. There are modifications that have been done in the example app to split between the app, the actual `ping-react-native` library, and other development tools or the `devDependencies`
+The app was actually bootstrapped with [npx create-expo-app@latest](https://github.com/react-native-community/cli), but since this project is a monorepo setup with `PNPM` to scaffold both app and actual library deployment. There are modifications that have been done in the example app to split between the app, the actual `material-color-react-native` library, and other development tools or the `devDependencies`
 - `ping-react-native/examples/{expo,macos}/metro.config.js`: The example app has to know where the `node_modules` and the actual `ping-react-native` directory lives without including the `ping-react-native` in the `dependencies` of the `package.json` example app
 - `ping-react-native/examples/{expo,macos}/react-native.config.js`: Since the actual `ping-react-native` library is not included as `dependencies` in the `package.json` file of example app, we have to tell React Native CLI where the `ping-react-native` directory lives to auto-linked the example app with `ping-react-native` library in development
 - `@react-native/eslint-config` development dependency (`devDependencies`) was moved out to the root of `package.json` (repository) from the `example` app

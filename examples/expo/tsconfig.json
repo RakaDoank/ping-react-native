@@ -16,6 +16,7 @@
 	"include": [
 		"../../package/src/**/*",
 		"./__tests__/**/*",
+		"./app.config.ts",
 		"./src/**/*",
 		".expo/types/**/*.ts",
 		"expo-env.d.ts"

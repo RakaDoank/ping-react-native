@@ -1,10 +1,18 @@
+catalog:
+  '@audira/carbon-react-native': 1.0.2
+  '@audira/carbon-react-native-elements': 1.0.0
+  react: 19.2.0
+  react-native: 0.83.2
+  react-native-safe-area-context: 5.7.0
+
 engineStrict: true
 
 nodeLinker: hoisted
 
 packages:
-  - builder-bob
-  - examples/*
-  - package
+  - 'examples/*'
+  - '!examples/macos'
+  - 'package'
+  - 'package-builder'
 
 strictPeerDependencies: false

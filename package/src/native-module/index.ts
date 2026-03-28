@@ -11,12 +11,14 @@ const LINKING_ERROR =
 	"- You rebuilt the app after installing the package\n" +
 	"- You are not using Expo Go\n"
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const module = isTurboModuleCompat()
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 	? require("./NativeRNPing").default
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 	: require("react-native").NativeModules.RNPing
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 const _NativeModule = module
 	? module
 	: new Proxy(
