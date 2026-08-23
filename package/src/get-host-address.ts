@@ -8,5 +8,5 @@ import {
  * The Promise will never be rejected. It will return `null` if it fails.
  */
 export function getHostAddress(host: string) {
-	return NativeModule.getHostAddress(host)
+		return NativeModule.getHostAddress(host)
 }
