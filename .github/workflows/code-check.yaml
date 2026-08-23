@@ -1,0 +1,36 @@
+name: Code Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+
+jobs:
+  code-check:
+    name: Code Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # Fetch all history so git diff can compare branches accurately
+          fetch-depth: 0
+      - name: Use PNPM
+        uses: pnpm/action-setup@v6
+        with:
+          # temporarily stick to the 11.11.0 because 11.12.0 has issue in Action
+          # https://github.com/pnpm/action-setup/issues/276
+          version: 11.11.0
+          cache: true
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: TypeScript Check
+        run: npm run type-check
+      - name: Lint Staged
+        run: |
+          pnpx lint-staged --diff="origin/${{ github.base_ref }}...HEAD"

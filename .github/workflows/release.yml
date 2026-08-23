@@ -4,9 +4,6 @@ on:
   push:
     branches:
     - release
-  pull_request:
-    branches:
-    - release
 
 jobs:
   release:
@@ -19,15 +16,16 @@ jobs:
     steps:
     - uses: actions/checkout@v6
     - name: Use PNPM
-      uses: pnpm/action-setup@v5
+      uses: pnpm/action-setup@v6
       with:
-        version: 10
+        # temporarily stick to the 11.11.0 because 11.12.0 has issue in Action
+        # https://github.com/pnpm/action-setup/issues/276
+        version: 11.11.0
         cache: true
-    - name: Use Node.js
-      uses: actions/setup-node@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v6
       with:
         node-version: '24'
-        registry-url: https://registry.npmjs.org/
         cache: 'pnpm'
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
