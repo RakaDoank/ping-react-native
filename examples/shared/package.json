@@ -5,8 +5,8 @@
 		"@audira/carbon-react-native": "catalog:",
 		"@audira/carbon-react-native-elements": "catalog:",
 		"@carbon/icons": "^11",
-		"react": "catalog:",
-		"react-native": "catalog:",
+		"react": ">=19",
+		"react-native": ">=0.81",
 		"react-native-safe-area-context": "catalog:"
 	},
 	"files": [

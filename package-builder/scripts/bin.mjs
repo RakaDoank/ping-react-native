@@ -44,6 +44,6 @@ try {
 
 } catch(err) {
 
-	throw new Error(`/package-builder/scripts/bin.mjs :: ${err instanceof Error ? `[${err.name}] :: ${err.message}` : "Unknown error"}`)
+	throw new Error(`/package-builder/scripts/bin.mjs :: ${err instanceof Error ? `[${err.name}] :: ${err.message}` : "Unknown error"}`, { cause: err })
 
 }

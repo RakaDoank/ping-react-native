@@ -3,7 +3,9 @@ import {
 } from "react"
 
 import {
+	DefaultTheme,
 	Stack,
+	ThemeProvider,
 } from "expo-router"
 
 import {
@@ -16,11 +18,6 @@ import {
 import {
 	Color,
 } from "@audira/carbon-react-native-elements"
-
-import {
-	DefaultTheme,
-	ThemeProvider,
-} from "@react-navigation/native"
 
 import {
 	SafeAreaProvider,

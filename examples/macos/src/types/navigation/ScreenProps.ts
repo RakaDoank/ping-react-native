@@ -1,10 +1,10 @@
 import type {
-	NativeStackScreenProps,
-} from "@react-navigation/native-stack"
+	StackScreenProps,
+} from "@react-navigation/stack"
 
 import type {
 	Stacks,
 } from "./Stacks"
 
-export interface ScreenProps<StackName extends keyof Stacks> extends NativeStackScreenProps<Stacks, StackName> {
+export interface ScreenProps<StackName extends keyof Stacks> extends StackScreenProps<Stacks, StackName> {
 }

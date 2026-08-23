@@ -1,3 +1,5 @@
+**This is an old guide to run the macOS App. The app has been managed in this monorepo project**.
+
 This is a [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Not in PNPM Workspaces

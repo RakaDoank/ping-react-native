@@ -27,10 +27,6 @@ export default EslintConfig.defineConfig([
 		"**/.expo/",
 		"./examples/*/expo-env.d.ts",
 
-		// We have to exclude macOS project, because they are not in PNPM workspaces (monorepo)
-		// you can remove this ignore temporarily to test `examples/macOS` lint
-		"./examples/macos/",
-
 		"**/node_modules/",
 		"package/lib",
 		"**/android/",
@@ -323,7 +319,7 @@ export default EslintConfig.defineConfig([
 		],
 		settings: {
 			react: {
-				version: "detect",
+				version: "19",
 			},
 		},
 		plugins: {

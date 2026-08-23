@@ -76,7 +76,7 @@ bundle install && bundle exec pod install
 ```
 4. Open **Xcode** app, and open the `ping-react-native/examples/expo/{ios,macos}/{projectName}.xcworkspace`
 5. You should see `RNPing` folder in the `Pods > Development Tools` from the sidebar navigator. This is where the library code lives you can actually do any fixes
-6. (⚠️ For macOS only) you need to patch some files to make the app run properly because react-native scripts are pointing to the wrong `node_modules` path. See this [README.md](https://github.com/RakaDoank/ping-react-native/blob/main/examples/macos/README.md)
+6. ~~(⚠️ For macOS only) you need to patch some files to make the app run properly because react-native scripts are pointing to the wrong `node_modules` path. See this [README.md](https://github.com/RakaDoank/ping-react-native/blob/main/examples/macos/README.md)~~
 
 ## Run the Example App
 

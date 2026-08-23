@@ -1,9 +1,13 @@
+allowBuilds:
+  '@carbon/icon-helpers': false
+  '@carbon/icons': false
+  'unrs-resolver': false
+
 catalog:
-  '@audira/carbon-react-native': 1.0.2
-  '@audira/carbon-react-native-elements': 1.0.0
-  react: 19.2.0
-  react-native: 0.83.2
-  react-native-safe-area-context: 5.7.0
+  '@audira/carbon-react-native': 1.0.10
+  '@audira/carbon-react-native-elements': 1.0.1
+  'react-native-safe-area-context': 5.7.0
+  'react-native-svg-transformer': 1.5.3
 
 engineStrict: true
 
@@ -11,7 +15,6 @@ nodeLinker: hoisted
 
 packages:
   - 'examples/*'
-  - '!examples/macos'
   - 'package'
   - 'package-builder'
 

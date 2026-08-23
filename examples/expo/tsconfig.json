@@ -1,24 +1,22 @@
 {
-	"extends": [
-		"expo/tsconfig.base",
-		"../../tsconfig.base.json"
-	],
-	"compilerOptions": {
-		"paths": {
-			"@/*": [
-				"./src/*"
-			],
-			"ping-react-native": [
-				"../../package/src/index"
-			]
-		}
-	},
-	"include": [
-		"../../package/src/**/*",
-		"./__tests__/**/*",
-		"./app.config.ts",
-		"./src/**/*",
-		".expo/types/**/*.ts",
-		"expo-env.d.ts"
-	]
+  "extends": [
+    "expo/tsconfig.base",
+    "../../tsconfig.base.json"
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "ping-react-native": [
+        "../../package/src/index"
+      ]
+    }
+  },
+  "include": [
+    "../../package/src/**/*",
+    "./__tests__/**/*",
+    "./app.config.ts",
+    "./src/**/*"
+  ]
 }

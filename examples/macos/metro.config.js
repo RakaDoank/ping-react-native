@@ -2,15 +2,18 @@ const
 	node_path =
 		require("node:path"),
 
-	{ getDefaultConfig, mergeConfig } =
-		require("@react-native/metro-config")
+	{ makeMetroConfig } =
+		require("@rnx-kit/metro-config"),
+
+	MetroSymlinksResolver =
+		require("@rnx-kit/metro-resolver-symlinks")
 
 const
-	workspacePath =
+	workspaceRoot =
 		node_path.join(__dirname, "..", ".."),
 
-	defaultConfig =
-		getDefaultConfig(__dirname)
+	rnxKitMetroConfig =
+		makeMetroConfig()
 
 /**
  * Metro configuration
@@ -20,39 +23,45 @@ const
  */
 const config = {
 
+	...rnxKitMetroConfig,
+
 	projectRoot: __dirname,
 
 	resolver: {
-		...defaultConfig.resolver,
+		...rnxKitMetroConfig.resolver,
 		assetExts: [
-			...(defaultConfig.resolver?.assetExts?.filter(ext => ext !== "svg") ?? []),
+			...(rnxKitMetroConfig.resolver?.assetExts?.filter(ext => ext !== "svg") ?? []),
 		],
 		extraNodeModules: {
-			...defaultConfig.resolver?.extraNodeModules,
-			"ping-react-native": node_path.join(workspacePath, "package", "src"),
+			...rnxKitMetroConfig.resolver?.extraNodeModules,
+			"ping-react-native": node_path.join(workspaceRoot, "package", "src"),
 		},
 		// only for monorepo setup
-		// nodeModulesPaths: [
-		// 	...defaultConfig.resolver?.nodeModulesPaths ?? [],
-		// 	node_path.join(__dirname, "node_modules"),
-		// 	node_path.join(workspacePath, "node_modules"),
-		// ],
+		nodeModulesPaths: [
+			...rnxKitMetroConfig.resolver?.nodeModulesPaths ?? [],
+			node_path.join(__dirname, "node_modules"),
+			node_path.join(workspaceRoot, "node_modules"),
+		],
+		resolveRequest: MetroSymlinksResolver(),
 		sourceExts: [
-			...(defaultConfig.resolver?.sourceExts ?? []),
+			...(rnxKitMetroConfig.resolver?.sourceExts ?? []),
 			"svg",
 		],
 	},
 
 	transformer: {
-		...defaultConfig.transformer,
+		...rnxKitMetroConfig.transformer,
 		babelTransformerPath: require.resolve("react-native-svg-transformer/react-native"),
 	},
 
 	// only for monorepo setup
-	// watchFolders: [
-	// 	workspacePath,
-	// ],
+	watchFolders: [
+		node_path.join(workspaceRoot, "examples", "shared"),
+		node_path.join(workspaceRoot, "package"),
+		node_path.join(__dirname, "node_modules"),
+		node_path.join(workspaceRoot, "node_modules"),
+	],
 
 }
 
-module.exports = mergeConfig(defaultConfig, config)
+module.exports = config

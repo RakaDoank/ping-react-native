@@ -1,5 +1,5 @@
 // @ts-expect-error - See this reference: https://github.com/react-native-community/RNNewArchitectureLibraries/blob/feat/back-turbomodule/example-library/src/index.js
-// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
 const turboModuleProxy: boolean | undefined = global.__turboModuleProxy
 
 /**
@@ -9,6 +9,7 @@ const turboModuleProxy: boolean | undefined = global.__turboModuleProxy
 export function isTurboModuleCompat() {
 	if(typeof turboModuleProxy === "undefined") {
 		// @ts-expect-error - See https://github.com/facebook/react-native/blob/cc5f17d5a2b185de1e7dec2a56a97b088e4c7a81/packages/react-native/Libraries/TurboModule/TurboModuleRegistry.js
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		return global.RN$Bridgeless === true
 	}
 

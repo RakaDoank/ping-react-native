@@ -72,7 +72,6 @@ export function useICMP({
 		} else if(icmp.current?.isRunning) {
 			icmp.current.stop()
 			// This effect block will not be ran immediately when `enabled` prop is false
-			// eslint-disable-next-line react-hooks/set-state-in-effect
 			setResult(curr => {
 				if(curr) {
 					return {

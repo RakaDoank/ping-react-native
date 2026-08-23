@@ -15,23 +15,26 @@
 		"@audira/carbon-react-native": "catalog:",
 		"@audira/carbon-react-native-elements": "catalog:",
 		"@examples/shared": "workspace:*",
-		"expo": "55.0.8",
-		"expo-build-properties": "55.0.10",
-		"expo-constants": "55.0.9",
-		"expo-font": "55.0.4",
-		"expo-image": "55.0.6",
-		"expo-router": "55.0.7",
-		"expo-splash-screen": "55.0.12",
-		"expo-status-bar": "55.0.4",
-    	"expo-system-ui": "55.0.10",
-		"react": "catalog:",
-		"react-native": "0.83.2",
+		"expo": "57.0.15",
+		"expo-build-properties": "57.0.13",
+		"expo-constants": "57.0.13",
+		"expo-font": "57.0.1",
+		"expo-image": "57.0.3",
+		"expo-router": "57.0.15",
+		"expo-splash-screen": "57.0.7",
+		"expo-status-bar": "57.0.1",
+    	"expo-system-ui": "57.0.2",
+		"react": "19.2.3",
+		"react-native": "0.86.2",
+		"react-native-reanimated": "4.5.1",
 		"react-native-safe-area-context": "catalog:",
   		"react-native-screens": "4.24.0",
-		"react-native-svg": "15.15.4",
-		"react-native-web": "0.21.2"
+		"react-native-svg": "15.15.5",
+		"react-native-web": "0.21.2",
+		"react-native-worklets": "0.10.1"
 	},
 	"devDependencies": {
-		"react-native-svg-transformer": "1.5.3"
+		"babel-preset-expo": "57.0.7",
+		"react-native-svg-transformer": "catalog:"
 	}
 }

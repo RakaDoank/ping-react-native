@@ -4,6 +4,6 @@
 	"private": true,
 	"bin": "./scripts/bin.mjs",
 	"devDependencies": {
-		"react-native-builder-bob": "0.40.18"
+		"react-native-builder-bob": "0.43.0"
 	}
 }
